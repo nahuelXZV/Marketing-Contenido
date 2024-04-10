@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('fecha_final');
             $table->text('condiciones');
 
-            $table->unsignedBigInteger('custoner_id')->nullable();
-            $table->foreign('custoner_id')->references('id')->on('custoner');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customer');
 
             $table->timestamps();
         });
