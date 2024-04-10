@@ -4,10 +4,10 @@ use App\Livewire\Customer\Customer\CreateCustomer;
 use App\Livewire\Customer\Customer\EditCustomer;
 use App\Livewire\Customer\Customer\ListCustomer;
 use App\Livewire\Customer\Customer\ShowCustomer;
-use App\Livewire\Custoner\Contract\CreateContract;
-use App\Livewire\Custoner\Contract\EditContract;
-use App\Livewire\Custoner\Contract\ListContract;
-use App\Livewire\Custoner\Contract\ShowContract;
+use App\Livewire\Customer\Contract\CreateContract;
+use App\Livewire\Customer\Contract\EditContract;
+use App\Livewire\Customer\Contract\ListContract;
+use App\Livewire\Customer\Contract\ShowContract;
 use App\Livewire\System\Company\EditCompany;
 use App\Livewire\System\Dashboard\Home;
 use App\Livewire\System\Role\CreateRole;
@@ -64,7 +64,7 @@ Route::middleware([
         Route::get('/list', ListCustomer::class)->name('customer.list');
         Route::get('/new', CreateCustomer::class)->name('customer.new');
         Route::get('/edit/{customer}', EditCustomer::class)->name('customer.edit');
-        Route::get('/show/{customer}', ShowCustomer::class)->name('customer.edit');
+        Route::get('/show/{customer}', ShowCustomer::class)->name('customer.show');
     });
 
     // contract routes
@@ -72,6 +72,6 @@ Route::middleware([
         Route::get('/list', ListContract::class)->name('contract.list');
         Route::get('/new', CreateContract::class)->name('contract.new');
         Route::get('/edit/{contract}', EditContract::class)->name('contract.edit');
-        Route::get('/show/{contract}', ShowContract::class)->name('contract.edit');
+        Route::get('/show/{contract}', ShowContract::class)->name('contract.show');
     });
 });

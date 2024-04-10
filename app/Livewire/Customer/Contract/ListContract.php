@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Custoner\Contract;
+namespace App\Livewire\Customer\Contract;
 
 use Livewire\Component;
 
