@@ -1,5 +1,14 @@
 <?php
 
+use App\Livewire\Customer\Customer\CreateCustomer;
+use App\Livewire\Customer\Customer\EditCustomer;
+use App\Livewire\Customer\Customer\ListCustomer;
+use App\Livewire\Customer\Customer\ShowCustomer;
+use App\Livewire\Custoner\Contract\CreateContract;
+use App\Livewire\Custoner\Contract\EditContract;
+use App\Livewire\Custoner\Contract\ListContract;
+use App\Livewire\Custoner\Contract\ShowContract;
+use App\Livewire\System\Company\EditCompany;
 use App\Livewire\System\Dashboard\Home;
 use App\Livewire\System\Role\CreateRole;
 use App\Livewire\System\Role\EditRole;
@@ -43,5 +52,26 @@ Route::middleware([
         Route::get('/list', ListRole::class)->name('role.list');
         Route::get('/new', CreateRole::class)->name('role.new');
         Route::get('/edit/{role}', EditRole::class)->name('role.edit');
+    });
+
+    // company routes
+    Route::group(['prefix' => 'company', 'middleware' => ['can:company.index']], function () {
+        Route::get('/edit/{company}', EditCompany::class)->name('company.edit');
+    });
+
+    // customer routes
+    Route::group(['prefix' => 'customer', 'middleware' => ['can:customer.index']], function () {
+        Route::get('/list', ListCustomer::class)->name('customer.list');
+        Route::get('/new', CreateCustomer::class)->name('customer.new');
+        Route::get('/edit/{customer}', EditCustomer::class)->name('customer.edit');
+        Route::get('/show/{customer}', ShowCustomer::class)->name('customer.edit');
+    });
+
+    // contract routes
+    Route::group(['prefix' => 'contract', 'middleware' => ['can:contract.index']], function () {
+        Route::get('/list', ListContract::class)->name('contract.list');
+        Route::get('/new', CreateContract::class)->name('contract.new');
+        Route::get('/edit/{contract}', EditContract::class)->name('contract.edit');
+        Route::get('/show/{contract}', ShowContract::class)->name('contract.edit');
     });
 });
