@@ -28,6 +28,7 @@ class CompanyService
             $company->logo = $data['logo'] ?? $company->logo;
             $company->slogan = $data['slogan'] ?? $company->slogan;
             $company->descripcion = $data['descripcion'] ?? $company->descripcion;
+            $company->save();
             return $company;
         } catch (\Exception $e) {
             return false;
