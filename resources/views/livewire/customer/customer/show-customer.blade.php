@@ -12,9 +12,9 @@
                     <x-shared.button-header title="Volver" route="customer.list" />
                     <x-shared.button-header title="Editar" route="customer.edit" :params="[$customer->id]" />
                     @if ($customer->estado == 'Activo')
-                        <x-shared.button-header title="Inactivo" type='button' clickAction="toggleState" />
-                    @else
                         <x-shared.button-header title="Activo" type='button' clickAction="toggleState" />
+                    @else
+                        <x-shared.button-header title="Inactivo" type='button' clickAction="toggleState" />
                     @endif
                 </div>
             </div>
@@ -51,39 +51,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contracts as $module)
+                            @foreach ($contracts as $contract)
                                 <tr
                                     class="border-b dark:border-gray-700 @if ($loop->even) bg-gray-100 dark:bg-gray-800 @endif">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $module->codigo }}
+                                        {{ $contract->codigo }}
                                     </th>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $module->costo }}</td>
+                                        {{ $contract->costo }}</td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $module->estado_pago }}</td>
+                                        {{ $contract->estado_pago }}</td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $module->fecha_inicio . ' al ' . $module->fecha_final }}
+                                        {{ $contract->fecha_inicio . ' al ' . $contract->fecha_final }}
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        @if ($module->estado_contrato == 'En proceso' || $module->estado_contrato == 'Sin iniciar')
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-white bg-blue-400 rounded-full dark:bg-blue-500 dark:text-blue-300">
-                                                En proceso
-                                            </span>
-                                        @else
+                                        @if ($contract->estado_contrato == 'Finalizado')
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-white bg-green-400 rounded-full dark:bg-green-500 dark:text-green-300">
                                                 Finalizado
+                                            </span>
+                                        @elseif ($contract->estado_contrato == 'Cancelado')
+                                            <span
+                                                class="px-2 py-1 font-semibold leading-tight text-white bg-red-400 rounded-full dark:bg-red-500 dark:text-red-300">
+                                                Cancelado
+                                            </span>
+                                        @else
+                                            <span
+                                                class="px-2 py-1 font-semibold leading-tight text-white bg-blue-400 rounded-full dark:bg-blue-500 dark:text-blue-300">
+                                                En proceso
                                             </span>
                                         @endif
                                     </td>
                                     <td
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center justify-end">
                                         <x-shared.button icon="show" route="contract.show" color="green"
-                                            type="a" :hover="600" :params="$module->id" tonality="400" />
+                                            type="a" :hover="600" :params="$contract->id" tonality="400" />
                                         <x-shared.button icon="edit" route="contract.edit" color="blue"
-                                            type="a" :hover="600" :params="$module->id" />
+                                            type="a" :hover="600" :params="$contract->id" />
                                     </td>
                                 </tr>
                             @endforeach

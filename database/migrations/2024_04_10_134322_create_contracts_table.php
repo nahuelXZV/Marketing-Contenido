@@ -15,15 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->float('costo');
-            $table->string('detalle_pago');
-            $table->string('descripcion');
-            $table->string('documento');
-            $table->string('estado_contrato');
-            $table->string('tipo_contrato');
-            $table->string('estado_pago');
+
+            $table->string('tipo_contrato'); // Servicio, Producto
+            $table->string('detalle_pago'); // Efectivo, Tarjeta,
+            $table->string('estado_pago'); // PAGADO, PENDIENTE
+
+            $table->string('estado_contrato'); // PENDIENTE, ACTIVO, INACTIVO
             $table->string('fecha_inicio');
             $table->string('fecha_final');
-            $table->text('condiciones');
+
+            $table->text('descripcion')->nullable();
+            $table->text('condiciones')->nullable();
+            $table->string('documento')->nullable();
 
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customer');

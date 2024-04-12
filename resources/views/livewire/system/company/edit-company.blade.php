@@ -15,12 +15,12 @@
         <div class="max-w px-4 py-8 mx-auto">
             <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
                 <div class="col-span-1">
-                    <div class="flex items-center justify-center bg-black rounded-full font-bold mb-2">
+                    <div class="flex items-center justify-center rounded-full font-bold mb-2">
                         <p class="text-black text-lg font-bold text-center uppercase">Recursos de la empresa</p>
                     </div>
 
                     <div class=" items center justify-center grid grid-rows-1 border border-sm p-2">
-                        <div class="flex items-center justify-center bg-black rounded-full font-bold mb-2">
+                        <div class="flex items-center justify-center  rounded-full font-bold mb-2">
                             <p class="text-black text-center">Foto de la empresa</p>
                         </div>
                         @if ($company->foto)
@@ -31,7 +31,7 @@
                     </div>
                     <br>
                     <div class=" items center justify-center grid grid-rows-1  border border-sm p-2">
-                        <div class="flex items-center justify-center bg-black rounded-full font-bold mb-2">
+                        <div class="flex items-center justify-center rounded-full font-bold mb-2">
                             <p class="text-black text-center">Logo de la empresa</p>
                         </div>
                         @if ($company->logo)

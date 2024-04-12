@@ -14,17 +14,17 @@ class RoleSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {/*  */
         $admin = Role::create(['name' => 'Administrador']);
         $gerente = Role::create(['name' => 'Gerente']);
         $empleado = Role::create(['name' => 'Empleado']);
 
         //Permisos
         Permission::create(['name' => 'administrador', 'description' => 'Permiso de administrador', 'type' => 'Administrativo'])->syncRoles($admin);
-        Permission::create(['name' => 'usuario.index', 'description' => 'Gestionar usuarios', 'type' => 'Administrativo'])->syncRoles($admin);
-        Permission::create(['name' => 'roles.index', 'description' => 'Gestionar roles', 'type' => 'Administrativo'])->syncRoles($admin);
-        Permission::create(['name' => 'company.index', 'description' => 'Gestionar empresa', 'type' => 'Administrativo'])->syncRoles($admin);
-        Permission::create(['name' => 'customer.index', 'description' => 'Gestionar clientes', 'type' => 'Administrativo'])->syncRoles($admin);
-        Permission::create(['name' => 'contract.index', 'description' => 'Gestionar contratos', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'user', 'description' => 'Gestionar usuarios', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'role', 'description' => 'Gestionar roles', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'company', 'description' => 'Gestionar empresa', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'customer', 'description' => 'Gestionar clientes', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'contract', 'description' => 'Gestionar contratos', 'type' => 'Administrativo'])->syncRoles($admin);
     }
 }

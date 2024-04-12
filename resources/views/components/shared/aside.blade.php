@@ -58,27 +58,33 @@
                     <span class="ms-3">Inicio</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('user.list') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <x-icons.users />
-                    <span class="ms-3">Usuarios</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('role.list') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <x-icons.shield />
-                    <span class="ms-3">Roles</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('customer.list') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <x-icons.clients />
-                    <span class="ms-3">Clientes</span>
-                </a>
-            </li>
+            @can('user')
+                <li>
+                    <a href="{{ route('user.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
+                        <x-icons.users />
+                        <span class="ms-3">Usuarios</span>
+                    </a>
+                </li>
+            @endcan
+            @can('role')
+                <li>
+                    <a href="{{ route('role.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
+                        <x-icons.shield />
+                        <span class="ms-3">Roles</span>
+                    </a>
+                </li>
+            @endcan
+            @can('customer')
+                <li>
+                    <a href="{{ route('customer.list') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
+                        <x-icons.clients />
+                        <span class="ms-3">Clientes</span>
+                    </a>
+                </li>
+            @endcan
             <li>
                 <a href="{{ route('user.list') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
@@ -93,13 +99,15 @@
                     <span class="ms-3">Redes sociales</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('company.edit', auth()->user()->company_id) }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <x-icons.office />
-                    <span class="ms-3">Empresa</span>
-                </a>
-            </li>
+            @can('company')
+                <li>
+                    <a href="{{ route('company.edit', auth()->user()->company_id) }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
+                        <x-icons.office />
+                        <span class="ms-3">Empresa</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
     <div

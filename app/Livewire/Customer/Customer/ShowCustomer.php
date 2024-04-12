@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Customer\Customer;
 
+use App\Constants\StateCustomer;
 use App\Services\Customer\ContractService;
 use App\Services\Customer\CustomerService;
 use Livewire\Component;
@@ -14,25 +15,6 @@ class ShowCustomer extends Component
     public $search = '';
     public $customer;
 
-    public $validate = [
-        'customerArray.nombre' => 'required',
-        'customerArray.apellido' => 'required',
-        'customerArray.telefono' => 'required',
-        'customerArray.correo' => 'required|email',
-        'customerArray.direccion' => 'required',
-        'customerArray.estado' => 'required',
-    ];
-
-    public $message = [
-        'customerArray.nombre.required' => 'El nombre es requerido',
-        'customerArray.apellido.required' => 'El apellido es requerido',
-        'customerArray.telefono.required' => 'El telefono es requerido',
-        'customerArray.correo.required' => 'El correo es requerido',
-        'customerArray.correo.email' => 'El correo no es valido',
-        'customerArray.direccion.required' => 'La direccion es requerida',
-        'customerArray.estado.required' => 'El estado es requerido',
-    ];
-
     public function mount($customer)
     {
         $this->customer = CustomerService::getOne($customer);
@@ -42,6 +24,16 @@ class ShowCustomer extends Component
         ];
     }
 
+    public function toggleState()
+    {
+        if ($this->customer->estado == StateCustomer::ACTIVE) {
+            $this->customer->estado = StateCustomer::INACTIVE;
+        } else {
+            $this->customer->estado = StateCustomer::ACTIVE;
+        }
+        $this->customer->save();
+        $this->customer = CustomerService::getOne($this->customer->id);
+    }
 
     public function render()
     {

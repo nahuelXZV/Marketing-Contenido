@@ -22,6 +22,18 @@ class ContractService
         return $contract;
     }
 
+    static public function generateCode()
+    {
+        $lastCode = Contract::latest()->first();
+        if ($lastCode) {
+            $code = explode('-', $lastCode->codigo);
+            $newCode = $code[0] . '-' . str_pad($code[1] + 1, 4, '0', STR_PAD_LEFT);
+        } else {
+            $newCode = 'CON-0001';
+        }
+        return $newCode;
+    }
+
     static public function getByCustomerPaginate($id, $search, $paginate)
     {
         $contracts = Contract::where('customer_id', $id)
@@ -34,16 +46,17 @@ class ContractService
     {
         try {
             $new = Contract::create([
+                'codigo' => $data['codigo'], // 'codigo' => 'CON-0001
                 'costo' => $data['costo'],
-                'detalle_pago' => $data['detalle_pago'],
-                'descripcion' => $data['descripcion'],
-                'documento' => $data['documento'],
-                'estado_contrato' => $data['estado_contrato'],
                 'tipo_contrato' => $data['tipo_contrato'],
+                'detalle_pago' => $data['detalle_pago'],
                 'estado_pago' => $data['estado_pago'],
+                'estado_contrato' => $data['estado_contrato'],
                 'fecha_inicio' => $data['fecha_inicio'],
                 'fecha_final' => $data['fecha_final'],
+                'descripcion' => $data['descripcion'],
                 'condiciones' => $data['condiciones'],
+                'documento' => $data['documento'],
                 'customer_id' => $data['customer_id']
             ]);
             return $new;
