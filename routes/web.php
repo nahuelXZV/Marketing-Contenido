@@ -6,7 +6,6 @@ use App\Livewire\Customer\Customer\ListCustomer;
 use App\Livewire\Customer\Customer\ShowCustomer;
 use App\Livewire\Customer\Contract\CreateContract;
 use App\Livewire\Customer\Contract\EditContract;
-use App\Livewire\Customer\Contract\ListContract;
 use App\Livewire\Customer\Contract\ShowContract;
 use App\Livewire\System\Company\EditCompany;
 use App\Livewire\System\Dashboard\Home;
@@ -69,7 +68,6 @@ Route::middleware([
 
     // contract routes
     Route::group(['prefix' => 'contract', 'middleware' => ['can:contract.index']], function () {
-        Route::get('/list', ListContract::class)->name('contract.list');
         Route::get('/new', CreateContract::class)->name('contract.new');
         Route::get('/edit/{contract}', EditContract::class)->name('contract.edit');
         Route::get('/show/{contract}', ShowContract::class)->name('contract.show');
