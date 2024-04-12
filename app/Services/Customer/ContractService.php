@@ -22,6 +22,14 @@ class ContractService
         return $contract;
     }
 
+    static public function getByCustomerPaginate($id, $search, $paginate)
+    {
+        $contracts = Contract::where('customer_id', $id)
+            ->where('codigo', 'ILIKE', '%' . $search . '%')
+            ->paginate($paginate);
+        return $contracts;
+    }
+
     static public function create($data)
     {
         try {

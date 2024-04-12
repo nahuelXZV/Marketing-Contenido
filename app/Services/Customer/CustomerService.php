@@ -4,7 +4,7 @@ namespace App\Services\Customer;
 
 use App\Models\Customer;
 
-class CompanyService
+class CustomerService
 {
     public function __construct()
     {
