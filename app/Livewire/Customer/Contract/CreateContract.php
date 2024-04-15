@@ -86,20 +86,19 @@ class CreateContract extends Component
 
     public function save()
     {
-        try {
-            $this->validate($this->validate, $this->message);
-            if ($this->documento) {
-                $this->contractArray['documento'] = $this->saveFile($this->documento, 'contract');
-            }
-            ContractService::create($this->contractArray);
-            return redirect()->route('customer.show', ['customer' => $this->customer->id]);
-        } catch (\Throwable $th) {
+        $this->validate($this->validate, $this->message);
+        if ($this->documento) {
+            $this->contractArray['documento'] = $this->saveFile($this->documento, 'marketing/contrato');
         }
+        ContractService::create($this->contractArray);
+        return redirect()->route('customer.show', ['customer' => $this->customer->id]);
     }
 
     private function saveFile($file, $path)
     {
-        return 'storage/' . Storage::disk('public')->put($path, $file);
+        $filePath = $file->store($path, 's3', 'public');
+        $fileUrl = Storage::disk('s3')->url($filePath);
+        return $fileUrl;
     }
 
     public function render()
