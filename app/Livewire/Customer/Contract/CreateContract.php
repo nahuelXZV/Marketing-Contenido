@@ -88,7 +88,7 @@ class CreateContract extends Component
     {
         $this->validate($this->validate, $this->message);
         if ($this->documento) {
-            $this->contractArray['documento'] = $this->saveFile($this->documento, 'marketing/contrato');
+            $this->contractArray['documento'] = $this->saveFile($this->documento, 'marketing/contract');
         }
         ContractService::create($this->contractArray);
         return redirect()->route('customer.show', ['customer' => $this->customer->id]);

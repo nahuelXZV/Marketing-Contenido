@@ -47,7 +47,9 @@ class EditCompany extends Component
 
     private function saveFile($file, $path)
     {
-        return 'storage/' . Storage::disk('public')->put($path, $file);
+        $filePath = $file->store($path, 's3', 'public');
+        $fileUrl = Storage::disk('s3')->url($filePath);
+        return $fileUrl;
     }
 
     private function deleteFile($path)
@@ -61,12 +63,12 @@ class EditCompany extends Component
     {
         $this->validate($this->validate, $this->message);
         if ($this->foto) {
-            $this->companyArray['foto'] = $this->saveFile($this->foto, 'company');
-            $this->deleteFile($this->companyArray['foto']);
+            $this->companyArray['foto'] = $this->saveFile($this->foto, 'marketing/company');
+            // $this->deleteFile($this->companyArray['foto']);
         }
         if ($this->logo) {
-            $this->companyArray['logo'] = $this->saveFile($this->logo, 'company');
-            $this->deleteFile($this->companyArray['logo']);
+            $this->companyArray['logo'] = $this->saveFile($this->logo, 'marketing/company');
+            // $this->deleteFile($this->companyArray['logo']);
         }
         CompanyService::update($this->company->id, $this->companyArray);
         return redirect()->route('company.edit', ['company' => $this->company->id]);

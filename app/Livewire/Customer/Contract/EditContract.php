@@ -91,8 +91,8 @@ class EditContract extends Component
         try {
             $this->validate($this->validate, $this->message);
             if ($this->documento) {
-                $this->contractArray['documento'] = $this->saveFile($this->documento, 'contract');
-                $this->deleteFile($this->contract->documento);
+                $this->contractArray['documento'] = $this->saveFile($this->documento, 'marketing/contract');
+                // $this->deleteFile($this->contract->documento);
             }
             ContractService::update($this->contractArray);
             return redirect()->route('customer.show', ['customer' => $this->customer->id]);
@@ -102,7 +102,9 @@ class EditContract extends Component
 
     private function saveFile($file, $path)
     {
-        return 'storage/' . Storage::disk('public')->put($path, $file);
+        $filePath = $file->store($path, 's3', 'public');
+        $fileUrl = Storage::disk('s3')->url($filePath);
+        return $fileUrl;
     }
 
     private function deleteFile($path)
