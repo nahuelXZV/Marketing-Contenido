@@ -24,7 +24,7 @@
             <section>
                 <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
                     <x-shared.input-readonly title="Nombre" :value="$customer->nombre" col='1' />
-                    <x-shared.input-readonly title="Apellido" :value="$customer->nombre" col='1' />
+                    <x-shared.input-readonly title="Apellido" :value="$customer->apellido" col='1' />
 
                     <x-shared.input-readonly title="Telefono" :value="$customer->telefono" />
                     <x-shared.input-readonly title="Correo" :value="$customer->correo" />
