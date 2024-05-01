@@ -1,5 +1,9 @@
 <?php
 
+use App\Livewire\Campaign\Campaign\CreateCampaign;
+use App\Livewire\Campaign\Campaign\EditCampaign;
+use App\Livewire\Campaign\Campaign\ListCampaign;
+use App\Livewire\Campaign\Campaign\ShowCampaign;
 use App\Livewire\Customer\Customer\CreateCustomer;
 use App\Livewire\Customer\Customer\EditCustomer;
 use App\Livewire\Customer\Customer\ListCustomer;
@@ -71,5 +75,13 @@ Route::middleware([
         Route::get('/new/{customer}', CreateContract::class)->name('contract.new');
         Route::get('/edit/{contract}', EditContract::class)->name('contract.edit');
         Route::get('/show/{contract}', ShowContract::class)->name('contract.show');
+    });
+
+    // campaign routes
+    Route::group(['prefix' => 'campaign'], function () {
+        Route::get('/list', ListCampaign::class)->name('campaign.list');
+        Route::get('/new', CreateCampaign::class)->name('campaign.new');
+        Route::get('/edit/{campaign}', EditCampaign::class)->name('campaign.edit');
+        Route::get('/show/{campaign}', ShowCampaign::class)->name('campaign.show');
     });
 });

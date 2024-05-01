@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\System;
+namespace App\Services\Campaign;
 
 use App\Models\Campaign;
 
-class CampaingService
+class CampaignService
 {
     static public function getAll()
     {
@@ -14,8 +14,8 @@ class CampaingService
 
     static public function getAllPaginate($attribute, $paginate, $order = "desc")
     {
-        $campaigns = Campaign::where('codigo', 'ILIKE', '%' . strtolower($attribute) . '%')
-            ->where('tematica', 'ILIKE', '%' . strtolower($attribute) . '%')
+        $campaigns = Campaign::where('tematica', 'ILIKE', '%' . strtolower($attribute) . '%')
+            // ->where('tematica', 'ILIKE', '%' . strtolower($attribute) . '%')
             ->orderBy('id', $order)
             ->paginate($paginate);
         return $campaigns;
@@ -32,6 +32,7 @@ class CampaingService
         try {
             $campaign = Campaign::create($campaign);
             $campaign->save();
+            // generate publications
             return $campaign;
         } catch (\Throwable $th) {
             return false;
