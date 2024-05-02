@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('fecha_inicio');
             $table->string('fecha_final');
             $table->string('estado')->default('Borrador');
-            $table->number('invervalo')->nullable();
+            $table->integer('invervalo')->nullable();
             $table->string('audiencia');
-            $table->string('presupuesto')->nullable();
+            $table->decimal('presupuesto')->nullable();
             $table->string('objetivo')->nullable();
 
             $table->unsignedBigInteger('company_id');

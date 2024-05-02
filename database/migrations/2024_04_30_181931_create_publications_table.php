@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('descripcion_recurso');
             $table->string('fecha_publicacion')->nullable();
             $table->string('hora_publicacion')->nullable();
-            $table->string('presupuesto')->nullable();
+            $table->decimal('presupuesto')->nullable();
             $table->string('estado')->default('Borrador');
 
             $table->unsignedBigInteger('campaign_id');
