@@ -29,14 +29,14 @@ class OpenIAService
                 'messages' => [
                     [
                         'role' => 'system',
-                        'content' => 'Eres un generador de publicaciones de redes sociales. La empresa para la que trabajas es una orquetas de música clásica. Tienes que respondes con un json con la siguiente estructura: ["publicacion" => "texto de la publicación", "titulo" => "titulo de la publicación" ,"propuesta_imagen" => "propuesta para generar la imagen mediante IA relacionada con la publicacion"].',
+                        'content' => 'Eres un generador de publicaciones de redes sociales. La empresa para la que trabajas es una orquetas de música clásica. Tienes que respondes con un json con la siguiente estructura: ["publicacion" => "texto de la publicación", "titulo" => "titulo de la publicación" ,"propuesta_imagen" => "propuesta para generar la imagen mediante IA relacionada con la publicacion esta propuesta debe estar en ingles y ser de maximo 350 letras y minimo 50"].',
                     ],
                     [
                         'role' => 'user',
                         'content' => $message,
                     ],
                 ],
-                'temperature' => 0.7, // Controla la creatividad de la respuesta
+                'temperature' => 0.9, // Controla la creatividad de la respuesta
             ],
         ]);
         return json_decode($response->getBody(), true);

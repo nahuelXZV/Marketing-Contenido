@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('fecha_inicio');
             $table->string('fecha_final');
             $table->string('estado')->default('Borrador');
-            $table->string('invervalo')->nullable();
+            $table->number('invervalo')->nullable();
             $table->string('audiencia');
             $table->string('presupuesto')->nullable();
             $table->string('objetivo')->nullable();
