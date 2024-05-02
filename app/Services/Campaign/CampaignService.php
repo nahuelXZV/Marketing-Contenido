@@ -110,8 +110,7 @@ class CampaignService
     public function getNumberOfPublications($campaign)
     {
         $daysOfPublication = Carbon::parse($campaign->fecha_inicio)->diffInDays(Carbon::parse($campaign->fecha_final));
-        $intervalo = intval($campaign->invervalo ?? 2);
-        // return $daysOfPublication / $intervalo;
-        return 2;
+        $intervalo = $campaign->intervalo === 0 ? 3 : $campaign->intervalo;
+        return $daysOfPublication / $intervalo;
     }
 };
