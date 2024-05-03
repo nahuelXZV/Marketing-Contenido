@@ -61,21 +61,15 @@
                                 </td>
                                 <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     @if ($customer->estado == 'Activo')
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                            Activo
-                                        </span>
+                                        <x-shared.badge color="green" message="Activo" />
                                     @else
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                                            Inactivo
-                                        </span>
+                                        <x-shared.badge color="red" message="Inactivo" />
                                     @endif
                                 </td>
                                 <td
                                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center justify-end">
-                                    <x-shared.button icon="show" route="customer.show" color="green" type="a" tonality="400"
-                                        :params="$customer->id" />
+                                    <x-shared.button icon="show" route="customer.show" color="green" type="a"
+                                        tonality="400" :params="$customer->id" />
                                     <x-shared.button icon="edit" route="customer.edit" color="blue" type="a"
                                         :params="$customer->id" />
                                     <x-shared.button icon="delete" color="red" type="button" :params="$customer->id"

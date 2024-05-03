@@ -6,10 +6,7 @@
                     <h5 class="mr-3 text-lg font-bold dark:text-white">
                         @if ($campaign->codigo)
                             {{ $campaign->codigo }} -
-                            <span
-                                class="text-sm font-semibold text-black bg-blue-200 dark:bg-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">
-                                {{ $campaign->estado }}
-                            </span>
+                            <x-shared.badge color="blue" :message="$campaign->estado" />
                         @endif
                     </h5>
                     <p class="text-sm text-gray-500 dark:text-gray-400">Datos de la campaña</p>
@@ -43,77 +40,63 @@
                     <x-shared.text-area-readonly title="Descripcion" :value="$campaign->descripcion" col='3' />
                 </div>
 
-                <div class="flex items-center justify-between mt-5">
-                    <h5 class="text-lg font-bold dark:text-white uppercase">Publicaciones</h5>
-                    <x-shared.button-header title="Nuevo" route="contract.new" :params="[$campaign->id]" />
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
+                        data-tabs-toggle="#default-styled-tab-content"
+                        data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+                        data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+                        role="tablist">
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab"
+                                data-tabs-target="#styled-profile" type="button" role="tab"
+                                aria-controls="estadisticas" aria-selected="false">
+                                Linea de tiempo
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button"
+                                role="tab" aria-controls="dashboard" aria-selected="false">
+                                Estadisticas
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="report-styled-tab" data-tabs-target="#styled-report" type="button" role="tab"
+                                aria-controls="report" aria-selected="false">
+                                Reportes
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="settings-styled-tab" data-tabs-target="#styled-settings" type="button"
+                                role="tab" aria-controls="settings" aria-selected="false">
+                                Publicaciones
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="overflow-x-auto p-4  ">
-                    <table class="w-full text-sm text-left">
-                        <thead class="text-md text-white uppercase bg-fondo dark:bg-gray-700 dark:text-gray-300">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Codigo</th>
-                                <th scope="col" class="px-4 py-3">Titulo</th>
-                                <th scope="col" class="px-4 py-3">Contenido</th>
-                                <th scope="col" class="px-4 py-3">Fechas</th>
-                                <th scope="col" class="px-4 py-3">Estado</th>
-                                <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">Actions</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($publications as $publication)
-                                <tr
-                                    class="border-b dark:border-gray-700 @if ($loop->even) bg-gray-100 dark:bg-gray-800 @endif">
-                                    <th scope="row"
-                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $publication->codigo }}
-                                    </th>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $publication->titulo }}</td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ strlen($publication->contenido) > 40
-                                            ? substr($publication->contenido, 0, 40) . '...'
-                                            : $publication->contenido }}
-                                    </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ \Carbon\Carbon::parse($publication->fecha_inicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::parse($publication->fecha_final)->format('d/m/Y') }}
-                                    </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        @if ($publication->estado == 'Finalizado')
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-white bg-green-400 rounded-full dark:bg-green-500 dark:text-green-300">
-                                                Finalizado
-                                            </span>
-                                        @elseif ($publication->estado == 'Cancelado')
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-white bg-red-400 rounded-full dark:bg-red-500 dark:text-red-300">
-                                                Cancelado
-                                            </span>
-                                        @else
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-white bg-blue-400 rounded-full dark:bg-blue-500 dark:text-blue-300">
-                                                En proceso
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center justify-end">
-                                        <x-shared.button icon="show" route="campaign.show" color="green"
-                                            type="a" :hover="600" :params="$publication->id" tonality="400" />
-                                        <x-shared.button icon="edit" route="campaign.edit" color="blue"
-                                            type="a" :hover="600" :params="$publication->id" />
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <nav class="px-1 py-3">
-                        {{ $publications->links() }}
-                    </nav>
+                <div id="default-styled-tab-content">
+                    <div class="hidden p-2 rounded-lg dark:bg-gray-800" id="styled-profile" role="tabpanel"
+                        aria-labelledby="profile-tab">
+                        <livewire:campaign.campaign.components.timeline :campaign="$campaign->id" />
+                    </div>
+                    <div class="hidden p-2 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
+                        aria-labelledby="dashboard-tab">
+                        <livewire:campaign.campaign.components.statistics :campaign="$campaign->id" />
+                    </div>
+                    <div class="hidden p-2 rounded-lg dark:bg-gray-800" id="styled-report" role="tabpanel"
+                        aria-labelledby="report-tab">
+                        <livewire:campaign.campaign.components.statistics :campaign="$campaign->id" />
+                    </div>
+                    <div class="hidden p-2 rounded-lg  dark:bg-gray-800" id="styled-settings" role="tabpanel"
+                        aria-labelledby="settings-tab">
+                        <livewire:campaign.campaign.components.publications :campaign="$campaign->id" />
+                    </div>
                 </div>
-
             </section>
         </div>
     </x-shared.container>

@@ -7,7 +7,7 @@ use App\Models\Publication;
 class PublicationService
 {
 
-    public function get($id)
+    public function getOne($id)
     {
         return Publication::find($id);
     }

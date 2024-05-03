@@ -8,9 +8,7 @@ use Livewire\WithPagination;
 
 class ListCampaign extends Component
 {
-    use WithPagination;
     protected $listeners = ['cleanerNotificacion'];
-    private $campaignService;
 
     public $breadcrumbs = [['title' => "Campañas", "url" => "campaign.list"]];
     public $search = '';
@@ -20,7 +18,6 @@ class ListCampaign extends Component
 
     public function mount()
     {
-        $this->campaignService = new CampaignService();
     }
 
     public function cleanerNotificacion()

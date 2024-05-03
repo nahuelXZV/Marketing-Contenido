@@ -10,7 +10,6 @@ use Livewire\Component;
 class CreateCampaign extends Component
 {
     public $breadcrumbs = [['title' => "Campañas", "url" => "campaign.list"], ['title' => "Crear", "url" => "campaign.create"]];
-    private $campaignService;
 
     public $campaignArray;
     public $audiences;
@@ -44,7 +43,6 @@ class CreateCampaign extends Component
 
     public function mount()
     {
-        $this->campaignService = new CampaignService();
         $this->campaignArray = [
             'codigo' => now()->format('YmdHi'),
             'tematica' => '',
@@ -63,7 +61,6 @@ class CreateCampaign extends Component
 
     public function save()
     {
-        $this->campaignService = new CampaignService();
         $this->validate($this->validate, $this->message);
         CampaignService::create($this->campaignArray);
         return redirect()->route('campaign.list');
