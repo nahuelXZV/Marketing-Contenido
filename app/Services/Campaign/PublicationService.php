@@ -24,6 +24,14 @@ class PublicationService
             ->paginate($paginate);
     }
 
+    public function getAllByCampaignTimeline($campaignId)
+    {
+        return Publication::where('campaign_id', $campaignId)
+            ->orderBy('fecha_publicacion', 'desc')
+            ->orderBy('hora_publicacion', 'desc')
+            ->get();
+    }
+
     public function create($publication)
     {
         try {
