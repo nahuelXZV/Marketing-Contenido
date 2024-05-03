@@ -2,20 +2,13 @@
 
 namespace App\Services\Campaign;
 
-use App\Constants\PublicationStatus;
 use App\Models\Campaign;
-use App\Services\Services\OpenIAService;
-use Illuminate\Support\Carbon;
 
 class CampaignService
 {
-    private $openIAService;
-    private $publicationService;
 
     public function __construct()
     {
-        $this->openIAService = new OpenIAService();
-        $this->publicationService = new PublicationService();
     }
 
     public function getAll()
@@ -38,15 +31,15 @@ class CampaignService
         return $campaign;
     }
 
-    public function create($campaign)
+    static public function create($campaignArray)
     {
         try {
-            $campaign = Campaign::create($campaign);
+            $campaign = Campaign::create($campaignArray);
             $campaign->save();
-            $this->generatePublications($campaign);
+            event(new \App\Events\CampaignCreated($campaign));
             return $campaign;
         } catch (\Throwable $th) {
-            return false;
+            dd($th);
         }
     }
 
@@ -71,46 +64,5 @@ class CampaignService
         } catch (\Exception $e) {
             return false;
         }
-    }
-
-    public function generatePublications($campaign)
-    {
-        $this->openIAService = new OpenIAService();
-        try {
-            $numberOfPublications = $this->getNumberOfPublications($campaign);
-            $message = "Generame " . $numberOfPublications . " publicaciones para la campaña publicitaria con tematica de " . $campaign->tematica . ", con el objetivo de " . $campaign->objetivo . " y relacionado con " . $campaign->descripcion . ", dirigido a " . $campaign->audiencia . ".";
-
-            $responseOpenIA =  $this->openIAService->sendMenssage($message);
-            if ($responseOpenIA && is_array($responseOpenIA['choices'])) {
-                $responseString = $responseOpenIA['choices'][0]['message']['content'];
-                $responseString = preg_replace('/\\\\u([0-9a-fA-F]{4})/', '&#x$1;', $responseString);
-                $publications = json_decode($responseString, true);
-                if (!is_array($publications)) {
-                    throw new \Exception("Error al generar las publicaciones");
-                }
-                foreach ($publications as $publication) {
-                    $dataPublication = [
-                        'titulo' => $publication["titulo"],
-                        'contenido' =>  $publication["publicacion"],
-                        'descripcion_recurso' =>  $publication["propuesta_imagen"],
-                        'estado' => PublicationStatus::DRAFT,
-                        'campaign_id' => $campaign->id,
-                    ];
-                    $this->publicationService->create($dataPublication);
-                };
-                return true;
-            } else {
-                throw new \Exception("Error al generar las publicaciones");
-            }
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-    public function getNumberOfPublications($campaign)
-    {
-        $daysOfPublication = Carbon::parse($campaign->fecha_inicio)->diffInDays(Carbon::parse($campaign->fecha_final));
-        $intervalo = $campaign->intervalo === 0 ? 3 : $campaign->intervalo;
-        return $daysOfPublication / $intervalo;
     }
 };

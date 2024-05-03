@@ -50,7 +50,7 @@ class CreateCampaign extends Component
             'tematica' => '',
             'presupuesto' => '',
             'audiencia' => '',
-            'invervalo' => '',
+            'invervalo' => null,
             'fecha_inicio' => '',
             'fecha_final' => '',
             'objetivo' => '',
@@ -65,7 +65,7 @@ class CreateCampaign extends Component
     {
         $this->campaignService = new CampaignService();
         $this->validate($this->validate, $this->message);
-        $this->campaignService->create($this->campaignArray);
+        CampaignService::create($this->campaignArray);
         return redirect()->route('campaign.list');
     }
 
