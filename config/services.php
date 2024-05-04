@@ -35,4 +35,8 @@ return [
         'key' => env('OPEN_AI_KEY'),
     ],
 
+    'dream' => [
+        'key' => env('DREAM_KEY'),
+    ],
+
 ];
