@@ -1,13 +1,13 @@
 <!-- component -->
 <div class="flex  w-full flex-wrap justify-center p-5 ">
-    {{-- Title Recursos de la publicacion --}}
     <div class="w-full mb-4">
-        <h2 class="text-2xl font-bold text-center">Recursos de la publicacion</h2>
+        <h2 class="text-lg font-bold text-start">
+            Selecciona la imagen que deseas agregar a la publicacion
+        </h2>
     </div>
-
     <div class="grid grid-cols-4 gap-3">
         @foreach ($resources as $resource)
-            <div class="w-auto bg-white p-3">
+            <div class="w-auto bg-white p-1">
                 <img class="h-auto w-full object-cover" src="{{ $resource->url_imagen }}" />
                 <ul class="mt-3 flex flex-wrap">
                     <li class="mr-auto">
