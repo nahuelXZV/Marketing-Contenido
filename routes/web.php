@@ -22,6 +22,7 @@ use App\Livewire\System\User\CreateUser;
 use App\Livewire\System\User\EditUser;
 use App\Livewire\System\User\ListUser;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,5 +92,14 @@ Route::middleware([
     Route::group(['prefix' => 'campaign/publication'], function () {
         Route::get('/edit/{publication}', EditPublication::class)->name('publication.edit');
         Route::get('/show/{publication}', ShowPublication::class)->name('publication.show');
+    });
+
+    // resource routes
+    Route::group(['prefix' => 'campaign/publication/resource'], function () {
+        Route::get('download/{resource}', function ($resource) {
+            return response()->download(
+                Storage::disk('s3')->url($resource->url_imagen),
+            );
+        })->name('resource.download');
     });
 });

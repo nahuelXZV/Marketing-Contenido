@@ -12,6 +12,7 @@
                 <div class="flex items-center space-x-3">
                     <x-shared.button-header title="Volver" route="campaign.show" :params="$campaign->id" />
                     <x-shared.button-header title="Editar" route="publication.edit" :params="[$publication->id]" />
+                    <livewire:campaign.publication.components.generate-image-modal :publication="$publication->id" />
                 </div>
             </div>
         </div>
@@ -34,8 +35,6 @@
                     @endif
                     <x-shared.text-area-readonly title="Contenido" :value="$publication->contenido" col='3' />
                 </div>
-
-
 
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
@@ -69,30 +68,19 @@
                     </ul>
                 </div>
                 <div id="default-styled-tab-content">
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel"
+                    <div class="hidden p-4 rounded-lg  dark:bg-gray-800" id="styled-profile" role="tabpanel"
                         aria-labelledby="profile-tab">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                                class="font-medium text-gray-800 dark:text-white">Profile tab's associated
-                                content</strong>. Clicking another tab will toggle the visibility of this one for the
-                            next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                        <livewire:campaign.publication.components.statistics :publication="$publication->id" />
                     </div>
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
+                    <div class="hidden p-4 rounded-lg  dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
                         aria-labelledby="dashboard-tab">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                                class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated
-                                content</strong>. Clicking another tab will toggle the visibility of this one for the
-                            next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                        <livewire:campaign.publication.components.resources :publication="$publication->id" />
                     </div>
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-settings" role="tabpanel"
+                    <div class="hidden p-4 rounded-lg  dark:bg-gray-800" id="styled-settings" role="tabpanel"
                         aria-labelledby="settings-tab">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                                class="font-medium text-gray-800 dark:text-white">Settings tab's associated
-                                content</strong>. Clicking another tab will toggle the visibility of this one for the
-                            next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                        <livewire:campaign.publication.components.setting :publication="$publication->id" />
                     </div>
                 </div>
-
-
             </section>
         </div>
     </x-shared.container>

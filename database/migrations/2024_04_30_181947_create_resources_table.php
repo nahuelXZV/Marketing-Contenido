@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url_imagen');
             $table->string('path');
+            // $table->string('task_id');
             $table->boolean('selected')->default(false);
 
             $table->unsignedBigInteger('publication_id');

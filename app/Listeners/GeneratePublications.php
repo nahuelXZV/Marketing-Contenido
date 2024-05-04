@@ -42,6 +42,8 @@ class GeneratePublications
                         'descripcion_recurso' =>  $publication["propuesta_imagen"],
                         'estado' => PublicationStatus::DRAFT,
                         'campaign_id' => $campaign->id,
+                        'fecha_publicacion' => $this->getDatePublication($campaign, $this->getInterval($campaign)),
+                        'hora_publicacion' => $this->getTimePublication($campaign, 0),
                     ];
                     $this->publicationService->create($dataPublication);
                 };
@@ -57,13 +59,32 @@ class GeneratePublications
     public function getNumberOfPublications($campaign)
     {
         $daysOfPublication = Carbon::parse($campaign->fecha_inicio)->diffInDays(Carbon::parse($campaign->fecha_final));
-        $intervalo = 3;
-        if ($campaign->intervalo !== null) {
-            $intervalo = $campaign->intervalo;
-        }
+        $interval = $this->getInterval($campaign);
         if ($daysOfPublication === 0) {
             return 1;
         }
-        return $daysOfPublication / $intervalo;
+        return $daysOfPublication / $interval;
+    }
+
+    public function getInterval($campaign)
+    {
+        $intervalo = 3;
+        if ($campaign->intervalo !== null) {
+            return $campaign->intervalo;
+        }
+        return $intervalo;
+    }
+
+
+    public function getDatePublication($campaign, $index)
+    {
+        $fechaInicio = Carbon::parse($campaign->fecha_inicio);
+        $fechaInicio->addDays($index);
+        return $fechaInicio;
+    }
+
+    public function getTimePublication($campaign, $index)
+    {
+        return Carbon::parse('13:00');
     }
 }
