@@ -8,8 +8,8 @@ use Livewire\WithPagination;
 
 class ListCampaign extends Component
 {
+    use WithPagination;
     protected $listeners = ['cleanerNotificacion'];
-    private $campaignService;
 
     public $breadcrumbs = [['title' => "Campañas", "url" => "campaign.list"]];
     public $search = '';
@@ -19,7 +19,6 @@ class ListCampaign extends Component
 
     public function mount()
     {
-        $this->campaignService = new CampaignService();
     }
 
     public function cleanerNotificacion()
@@ -36,7 +35,7 @@ class ListCampaign extends Component
 
     public function delete($id)
     {
-        if ($this->campaignService->delete($id)) {
+        if (CampaignService::delete($id)) {
             $this->message = 'Eliminado correctamente';
             $this->type = 'success';
         } else {
@@ -48,7 +47,7 @@ class ListCampaign extends Component
 
     public function render()
     {
-        $campaigns = $this->campaignService->getAllPaginate($this->search, 15);
+        $campaigns = CampaignService::getAllPaginate($this->search, 15);
         return view('livewire.campaign.campaign.list-campaign', compact('campaigns'));
     }
 }

@@ -11,13 +11,13 @@ class CampaignService
     {
     }
 
-    public function getAll()
+    static public function getAll()
     {
         $campaigns = Campaign::all();
         return $campaigns;
     }
 
-    public function getAllPaginate($attribute, $paginate, $order = "desc")
+    static   public function getAllPaginate($attribute, $paginate, $order = "desc")
     {
         $campaigns = Campaign::where('tematica', 'ILIKE', '%' . strtolower($attribute) . '%')
             ->orderBy('id', $order)
@@ -25,7 +25,7 @@ class CampaignService
         return $campaigns;
     }
 
-    public function getOne($id)
+    static  public function getOne($id)
     {
         $campaign = Campaign::find($id);
         return $campaign;
@@ -43,19 +43,18 @@ class CampaignService
         }
     }
 
-    public function update($id, $campaign)
+    static  public function update($id, $campaignArray)
     {
         try {
-            $campaign = Campaign::find($id);
-            $campaign->update($campaign);
-            $campaign->save();
+            $campaign = Campaign::find(intval($id));
+            $campaign->update($campaignArray);
             return $campaign;
         } catch (\Throwable $th) {
             return false;
         }
     }
 
-    public function delete($campaign)
+    static public function delete($campaign)
     {
         try {
             $campaign = Campaign::find($campaign);

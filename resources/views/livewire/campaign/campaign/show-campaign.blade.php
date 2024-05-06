@@ -14,11 +14,6 @@
                 <div class="flex items-center space-x-3">
                     <x-shared.button-header title="Volver" route="campaign.list" />
                     <x-shared.button-header title="Editar" route="campaign.edit" :params="[$campaign->id]" />
-                    @if ($campaign->estado == 'Activo')
-                        <x-shared.button-header title="Activo" type='button' clickAction="toggleState" />
-                    @else
-                        <x-shared.button-header title="Inactivo" type='button' clickAction="toggleState" />
-                    @endif
                 </div>
             </div>
         </div>
