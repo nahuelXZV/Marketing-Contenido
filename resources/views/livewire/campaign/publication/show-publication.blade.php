@@ -12,7 +12,8 @@
                 <div class="flex items-center space-x-3">
                     <x-shared.button-header title="Volver" route="campaign.show" :params="$campaign->id" />
                     <x-shared.button-header title="Editar" route="publication.edit" :params="[$publication->id]" />
-                    <livewire:campaign.publication.components.generate-image-modal :publication="$publication->id" />
+                    <livewire:campaign.publication.components.generate-image-modal :publication="$publication->id"
+                        :key="$publication->id" />
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ class GenerateImageModal extends Component
             "style" => 0,
             "prompt" => $this->publication->descripcion_recurso,
             "width" => "960",
-            "height" => "1560",
+            "height" => "960",
         ];
     }
 
@@ -48,7 +48,7 @@ class GenerateImageModal extends Component
             "style" => 0,
             "prompt" => $this->publication->descripcion_recurso,
             "width" => "960",
-            "height" => "1560",
+            "height" => "960",
         ];
     }
 

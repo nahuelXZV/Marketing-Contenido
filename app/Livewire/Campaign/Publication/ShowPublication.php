@@ -4,6 +4,7 @@ namespace App\Livewire\Campaign\Publication;
 
 use App\Services\Campaign\CampaignService;
 use App\Services\Campaign\PublicationService;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowPublication extends Component
