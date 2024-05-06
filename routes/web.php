@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImagenController;
 use App\Livewire\Campaign\Campaign\CreateCampaign;
 use App\Livewire\Campaign\Campaign\EditCampaign;
 use App\Livewire\Campaign\Campaign\ListCampaign;
@@ -96,12 +97,6 @@ Route::middleware([
         Route::get('/show/{publication}', ShowPublication::class)->name('publication.show');
     });
 
-    // resource routes
-    Route::group(['prefix' => 'campaign/publication/resource'], function () {
-        Route::get('download/{resource}', function ($resource) {
-            return response()->download(
-                Storage::disk('s3')->url($resource->url_imagen),
-            );
-        })->name('resource.download');
-    });
+    // download image route
+    Route::get('campaign/publication/image/download/{resource}', [ImagenController::class, 'download'])->name('resource.download');
 });

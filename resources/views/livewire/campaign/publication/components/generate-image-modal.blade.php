@@ -1,9 +1,21 @@
 <div>
-    <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+    <button data-modal-target="static-modal" data-modal-toggle="static-modal" wire:loading.remove
+        wire:target="generateImage" wire:target="generateImage"
         class="block text-white bg-fondo hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-fondo font-medium rounded-lg text-sm px-3 py-2 text-center dark:bg-fondo dark:hover:bg-fondo dark:focus:ring-fondo"
         type="button">
         Generar Nueva Imagen
     </button>
+    <div class="flex items-center space-x-2" wire:loading wire:target="generateImage">
+        <li class="flex items-center">
+            <div role="status">
+                <x-icons.loading />
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span class="text-md font-bold text-gray-900 dark:text-white">
+                Generando imagen...
+            </span>
+        </li>
+    </div>
     <!-- Main modal -->
     <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
