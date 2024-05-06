@@ -7,24 +7,24 @@ use App\Models\Publication;
 class PublicationService
 {
 
-    public function getOne($id)
+    static public function getOne($id)
     {
         return Publication::find($id);
     }
 
-    public function getAllByCampaign($campaignId)
+    static public function getAllByCampaign($campaignId)
     {
         return Publication::where('campaign_id', $campaignId)->get();
     }
 
-    public function getAllByCampaignPaginate($campaignId, $search, $paginate)
+    static public function getAllByCampaignPaginate($campaignId, $search, $paginate)
     {
         return Publication::where('campaign_id', $campaignId)
             ->where('titulo', 'like', '%' . $search . '%')
             ->paginate($paginate);
     }
 
-    public function getAllByCampaignTimeline($campaignId)
+    static public function getAllByCampaignTimeline($campaignId)
     {
         return Publication::where('campaign_id', $campaignId)
             ->orderBy('fecha_publicacion', 'desc')
@@ -32,10 +32,10 @@ class PublicationService
             ->get();
     }
 
-    public function create($publication)
+    static public function create($publicationArray)
     {
         try {
-            $publication = Publication::create($publication);
+            $publication = Publication::create($publicationArray);
             $publication->save();
             return $publication;
         } catch (\Throwable $th) {

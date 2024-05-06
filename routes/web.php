@@ -4,6 +4,7 @@ use App\Livewire\Campaign\Campaign\CreateCampaign;
 use App\Livewire\Campaign\Campaign\EditCampaign;
 use App\Livewire\Campaign\Campaign\ListCampaign;
 use App\Livewire\Campaign\Campaign\ShowCampaign;
+use App\Livewire\Campaign\Publication\CreatePublication;
 use App\Livewire\Campaign\Publication\EditPublication;
 use App\Livewire\Campaign\Publication\ShowPublication;
 use App\Livewire\Customer\Customer\CreateCustomer;
@@ -90,6 +91,7 @@ Route::middleware([
 
     // publication routes
     Route::group(['prefix' => 'campaign/publication'], function () {
+        Route::get('/new/{campaign}', CreatePublication::class)->name('publication.new');
         Route::get('/edit/{publication}', EditPublication::class)->name('publication.edit');
         Route::get('/show/{publication}', ShowPublication::class)->name('publication.show');
     });

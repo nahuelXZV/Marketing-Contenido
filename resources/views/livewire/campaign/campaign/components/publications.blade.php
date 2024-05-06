@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-center justify-between mt-5">
         <h5 class="text-lg font-bold dark:text-white uppercase">Publicaciones</h5>
-        <x-shared.button-header title="Nuevo" route="contract.new" :params="[$campaign->id]" />
+        <x-shared.button-header title="Nuevo" route="publication.new" :params="[$campaign->id]" />
     </div>
 
     <div class="overflow-x-auto p-4  ">

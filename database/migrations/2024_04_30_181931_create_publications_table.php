@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('codigo')->nullable();
             $table->string('titulo');
-            $table->text('contenido');
-            $table->text('descripcion_recurso');
+            $table->decimal('presupuesto')->nullable();
             $table->string('fecha_publicacion')->nullable();
             $table->string('hora_publicacion')->nullable();
-            $table->decimal('presupuesto')->nullable();
+            $table->text('contenido');
+            $table->text('descripcion_recurso');
             $table->string('estado')->default('Borrador');
 
             $table->unsignedBigInteger('campaign_id');
