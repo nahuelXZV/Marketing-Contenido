@@ -39,4 +39,7 @@ return [
         'key' => env('DREAM_KEY'),
     ],
 
+    'imgix' => [
+        'url' => env('URL_IMGIX'),
+    ]
 ];

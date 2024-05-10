@@ -5,6 +5,7 @@ use App\Livewire\Campaign\Campaign\CreateCampaign;
 use App\Livewire\Campaign\Campaign\EditCampaign;
 use App\Livewire\Campaign\Campaign\ListCampaign;
 use App\Livewire\Campaign\Campaign\ShowCampaign;
+use App\Livewire\Campaign\Publication\Components\EditImage;
 use App\Livewire\Campaign\Publication\CreatePublication;
 use App\Livewire\Campaign\Publication\EditPublication;
 use App\Livewire\Campaign\Publication\ShowPublication;
@@ -95,6 +96,7 @@ Route::middleware([
         Route::get('/new/{campaign}', CreatePublication::class)->name('publication.new');
         Route::get('/edit/{publication}', EditPublication::class)->name('publication.edit');
         Route::get('/show/{publication}', ShowPublication::class)->name('publication.show');
+        Route::get('/image/{resource}', EditImage::class)->name('publication.image');
     });
 
     // download image route

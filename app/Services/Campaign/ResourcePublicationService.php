@@ -27,4 +27,9 @@ class ResourcePublicationService
             return false;
         }
     }
+
+    static public function getPathImage($url)
+    {
+        return substr($url, 39);
+    }
 }
