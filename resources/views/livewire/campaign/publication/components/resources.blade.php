@@ -8,10 +8,12 @@
     <div class="grid grid-cols-4 gap-3">
         @foreach ($resources as $resource)
             <div class="w-auto bg-white p-1">
-                <img class="h-auto w-full object-cover" src="{{ $resource->url_imagen }}" />
+                <a href="{{ route('publication.image', $resource->id) }}">
+                    <img class="h-auto w-full object-cover" src="{{ $resource->url_imagen }}" />
+                </a>
                 <ul class="mt-3 flex flex-wrap">
                     <li class="mr-auto">
-                        {{-- <a class="flex text-gray-400 hover:text-gray-600"
+                        <a class="flex text-gray-400 hover:text-gray-600"
                             href="{{ route('resource.download', $resource->id) }}" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 style="width:24px;height:24px" class="mr-0.5">
@@ -20,20 +22,8 @@
                                     clip-rule="evenodd" />
                             </svg>
                             Descargar
-                        </a> --}}
-                        <a class="flex text-gray-400 hover:text-gray-600"
-                            href="{{ route('publication.image', $resource->id) }}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="w-6 h-6 mr-0.5">
-                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                <path fill-rule="evenodd"
-                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Modificar
                         </a>
                     </li>
-
                     <li>
                         <button class="flex text-gray-400 hover:text-gray-600" wire:loading.attr="disabled"
                             wire:click="selectedResource({{ $resource->id }})">
@@ -42,13 +32,11 @@
                                     <path fill="currentColor"
                                         d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
                                 </svg>
-                                Seleccionado
                             @else
                                 <svg class="mr-0.5" style="width:24px;height:24px" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
                                 </svg>
-                                Seleccionar
                             @endif
                         </button>
                     </li>
