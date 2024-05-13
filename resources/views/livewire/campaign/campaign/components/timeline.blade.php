@@ -7,8 +7,8 @@
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                     @if ($publication->fecha_publicacion && $publication->hora_publicacion)
-                        @if ($publication->fecha_publicacion == Carbon\Carbon::now()->format('d-m-Y'))
-                            Hoy
+                        @if ($publication->fecha_publicacion == Carbon\Carbon::now()->format('Y-m-d'))
+                            Hoy - {{ $publication->hora_publicacion }}
                         @else
                             {{ Carbon\Carbon::parse($publication->fecha_publicacion)->format('d F Y') }} -
                             {{ $publication->hora_publicacion }}

@@ -27,6 +27,7 @@ class OpenIAService
             ],
             'json' => [
                 'model' => 'gpt-3.5-turbo', // El modelo que desees usar
+                // 'response_format' => ["type" => "json_object"],
                 'messages' => [
                     [
                         'role' => 'system',
@@ -40,7 +41,13 @@ class OpenIAService
                 'temperature' => 0.8, // Controla la creatividad de la respuesta
             ],
         ]);
-        return json_decode($response->getBody(), true);
+        $responseOpenIA = json_decode($response->getBody(), true);
+        if ($responseOpenIA && is_array($responseOpenIA['choices'])) {
+            $responseString = $responseOpenIA['choices'][0]['message']['content'];
+            return json_decode($responseString, true);
+        } else {
+            throw new \Exception("Error al generar las publicaciones");
+        }
     }
 
     public function translate($text)

@@ -34,7 +34,8 @@
                                 : $publication->contenido }}
                         </td>
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ \Carbon\Carbon::parse($publication->fecha_inicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::parse($publication->fecha_final)->format('d/m/Y') }}
+                            {{ \Carbon\Carbon::parse($publication->fecha_publicacion)->format('d/m/Y') }} -
+                            {{ $publication->hora_publicacion }}
                         </td>
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             @if ($publication->estado == 'Aceptado')
