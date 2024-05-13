@@ -6,6 +6,7 @@ use App\Constants\StylesDream;
 use App\Services\Campaign\PublicationService;
 use App\Services\Campaign\ResourcePublicationService;
 use App\Services\Services\DreamIAService;
+use App\Services\Services\OpenIAService;
 use Livewire\Component;
 
 class GenerateImageModal extends Component
@@ -29,17 +30,31 @@ class GenerateImageModal extends Component
 
     public function generateImage()
     {
-        $dreamService = new DreamIAService();
+        $openIAService = new OpenIAService();
+
         $stylesArray = StylesDream::getStylesArray();
         $this->options['style'] = $stylesArray[$this->options['style']];
-        $response = $dreamService->generateImage($this->options);
+        $this->options['prompt'] = $openIAService->translate($this->options['prompt']);
+        $response = $this->getImage();
         $resource = [
             "url_imagen" => $response['url'],
             'path' => $response['task_id'],
             "publication_id" => $this->publication->id,
         ];
+
         ResourcePublicationService::create($resource);
         $this->dispatch('resource-created');
+        $this->resetOptions();
+    }
+
+    public function getImage()
+    {
+        $dreamService = new DreamIAService();
+        $openIAService = new OpenIAService();
+        if ($this->options['style'] == 22) {
+            return $openIAService->generateImage($this->options);
+        }
+        return  $dreamService->generateImage($this->options);
     }
 
     public function resetOptions()

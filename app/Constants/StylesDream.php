@@ -4,48 +4,6 @@ namespace App\Constants;
 
 class StylesDream
 {
-    /*
-1 - Synthwave
-
-2 - Ukiyoe
-
-3 - No Style
-
-4 - Steampunk
-
-5 - Fantasy Art
-
-6 - Vibrant
-
-7 - HD
-
-8 - Pastel
-
-9 - Psychic
-
-10 - Dark Fantasy
-
-11 - Mystical
-
-12 - Festive
-
-13 - Flemish Baroque
-
-14 - Etching
-
-15 - Salvador Dali
-
-16 - Watercolor
-
-17 - Realistic
-
-18 - Van Gogh
-
-19 - Throwback
-
-20 - Ink
-
-21 - Surreal */
     const SYNTHWAVE = 'Synthwave';
     const UKIYOE = 'Ukiyoe';
     const NO_STYLE = 'No Style';
@@ -67,6 +25,7 @@ class StylesDream
     const THROWBACK = 'Throwback';
     const INK = 'Ink';
     const SURREAL = 'Surreal';
+    const DALL_E = 'DALL-E';
 
 
     public static function getStyles()
@@ -93,6 +52,7 @@ class StylesDream
             self::THROWBACK,
             self::INK,
             self::SURREAL,
+            self::DALL_E,
         ];
     }
 
@@ -121,6 +81,7 @@ class StylesDream
             self::THROWBACK => 19,
             self::INK => 20,
             self::SURREAL => 21,
+            self::DALL_E => 22,
         ];
     }
 

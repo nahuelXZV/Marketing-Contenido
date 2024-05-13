@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Campaign\Publication\Components;
 
-use App\Models\Resource;
 use App\Services\Campaign\CampaignService;
 use App\Services\Campaign\PublicationService;
 use App\Services\Campaign\ResourcePublicationService;
@@ -39,9 +38,9 @@ class EditImage extends Component
         $this->newImage = $this->resource->url_imagen;
         $this->options = [
             'auto' => null, // auto enhance
-            'h' => 960, // height
-            'w' => 960, // width
-            'q' => 90, // quality 0 to 100
+            'h' => null, // height
+            'w' => null, // width
+            'q' => null, // quality 0 to 100
             'fm' => null, // format
             'mark' => null, // watermark nameImage
             'fit' => "clip", // fit
