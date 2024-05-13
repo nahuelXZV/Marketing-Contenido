@@ -30,7 +30,22 @@
                     </div>
                     <div class="flex flex-col justify-center items-center">
                         <div class="sm:p-auto py-5 px-10 ">
-                            <img class="w-auto h-auto" src="{{ $newImage }}" alt="image1" />
+                            @switch($options['fm'])
+                                @case('webm')
+                                    <video class="w-auto h-auto" controls>
+                                        <source src="{{ $newImage }}" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                @break
+                                @case('mp4')
+                                    <video class="w-auto h-auto" controls>
+                                        <source src="{{ $newImage }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                @break
+                                @default
+                                    <img class="w-auto h-auto" src="{{ $newImage }}" alt="image1" />
+                            @endswitch
                         </div>
                     </div>
                 </div>
@@ -120,8 +135,8 @@
                             <label for="quality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Exposicion
                             </label>
-                            <input type="number" id="quality" wire:model="options.exp" min="-100" max="100"
-                                placeholder="0"
+                            <input type="number" id="quality" wire:model="options.exp" min="-100"
+                                max="100" placeholder="0"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div class="mb-5">
