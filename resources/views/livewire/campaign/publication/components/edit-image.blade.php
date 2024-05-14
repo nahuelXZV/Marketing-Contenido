@@ -101,7 +101,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class=" mb-5">
+                        {{-- <div class=" mb-5">
                             <label for="format" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Agregar marca de agua
                             </label>
@@ -110,7 +110,7 @@
                                 <option value="null">No</option>
                                 <option value="si">Si</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-5 col-span-2">
                             <label for="format" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Ajuste
