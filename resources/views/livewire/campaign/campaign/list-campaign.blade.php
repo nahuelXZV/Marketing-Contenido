@@ -57,7 +57,7 @@
                                     {{ \Carbon\Carbon::parse($campaign->fecha_inicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::parse($campaign->fecha_final)->format('d/m/Y') }}
                                 </td>
                                 <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $campaign->objetivo }}
+                                    {{ strlen($campaign->objetivo) > 40 ? substr($campaign->objetivo, 0, 40) . '...' : $campaign->objetivo }}
                                 </td>
                                 <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     @if ($campaign->estado == 'Activo')
