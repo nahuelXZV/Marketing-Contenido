@@ -8,6 +8,7 @@ class Audiences
     const ADOLESCENTES = 'Adolescentes y Jóvenes';
     const ADULTOS = 'Adultos';
     const ADULTOS_MAYORES = 'Adultos Mayores';
+    const TODOS = 'Todos';
 
     public static function getAudiences()
     {
@@ -16,6 +17,7 @@ class Audiences
             self::ADOLESCENTES,
             self::ADULTOS,
             self::ADULTOS_MAYORES,
+            self::TODOS,
         ];
     }
 
@@ -26,6 +28,7 @@ class Audiences
             self::ADOLESCENTES => '13-18',
             self::ADULTOS => '19-59',
             self::ADULTOS_MAYORES => '60+',
+            self::TODOS => '0+',
         ];
     }
 }
