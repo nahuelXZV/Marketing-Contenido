@@ -131,6 +131,54 @@
                             @enderror
                         </div>
 
+                        <div class="rounded-full font-bold mb-2">
+                            <p class="text-black text-lg font-bold uppercase">Información Meta</p>
+                        </div>
+
+
+                        <div class="col-span-3 sm:col-span-3">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta Access Token
+                            </label>
+                            <input type="text" wire:model="companyArray.meta_access_token"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Meta Access Token" required="">
+                            @error('companyArray.meta_access_token')
+                                <x-shared.validate-error :message="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="col-span-3 sm:col-span-3">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta Page Id
+                            </label>
+                            <input type="text" wire:model="companyArray.meta_page_id_meta"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Meta Page Id" required="">
+                            @error('companyArray.meta_page_id_meta')
+                                <x-shared.validate-error :message="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="col-span-3 sm:col-span-3">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta App Id
+                            </label>
+                            <input type="text" wire:model="companyArray.meta_app_id_meta"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Meta App Id" required="">
+                            @error('companyArray.meta_app_id_meta')
+                                <x-shared.validate-error :message="$message" />
+                            @enderror
+                        </div>
+                        <div class="col-span-3 sm:col-span-3">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta App secret
+                            </label>
+                            <input type="text" wire:model="companyArray.meta_app_secret"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Meta App secret" required="">
+                            @error('companyArray.meta_app_secret')
+                                <x-shared.validate-error :message="$message" />
+                            @enderror
+                        </div>
+
                     </div>
                 </section>
 

@@ -28,6 +28,10 @@ class CompanyService
             $company->logo = $data['logo'] ?? $company->logo;
             $company->slogan = $data['slogan'] ?? $company->slogan;
             $company->descripcion = $data['descripcion'] ?? $company->descripcion;
+            $company->meta_access_token = $data['meta_access_token'] ?? $company->meta_access_token;
+            $company->meta_page_id_meta = $data['meta_page_id_meta'] ?? $company->meta_page_id_meta;
+            $company->meta_app_id_meta = $data['meta_app_id_meta'] ?? $company->meta_app_id_meta;
+            $company->meta_app_secret = $data['meta_app_secret'] ?? $company->meta_app_secret;
             $company->save();
             return $company;
         } catch (\Exception $e) {
