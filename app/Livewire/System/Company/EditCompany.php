@@ -24,6 +24,10 @@ class EditCompany extends Component
         'companyArray.correo' => 'required',
         'companyArray.slogan' => 'required',
         'companyArray.descripcion' => 'required',
+        'companyArray.meta_access_token' => 'required',
+        'companyArray.meta_page_id_meta' => 'required',
+        'companyArray.meta_app_id_meta' => 'required',
+        'companyArray.meta_app_secret' => 'required',
         'foto' => 'nullable|image',
         'logo' => 'nullable|image',
     ];
@@ -35,6 +39,10 @@ class EditCompany extends Component
         'companyArray.correo.required' => 'El correo es requerido',
         'companyArray.slogan.required' => 'El slogan es requerido',
         'companyArray.descripcion.required' => 'La descripcion es requerida',
+        'companyArray.meta_access_token.required' => 'El token de acceso es requerido',
+        'companyArray.meta_page_id_meta.required' => 'El identificador de pagina es requerido',
+        'companyArray.meta_app_id_meta.required' => 'El identificador de aplicacion es requerido',
+        'companyArray.meta_app_secret.required' => 'El codigo secreto de la aplicacion es requerido',
         'foto.required' => 'La foto es requerida',
         'foto.image' => 'La foto debe ser una imagen',
     ];
