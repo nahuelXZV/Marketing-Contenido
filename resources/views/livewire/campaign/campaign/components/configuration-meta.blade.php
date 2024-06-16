@@ -1,0 +1,3 @@
+<div>
+    {{ $publicationConfiguration->identificador }}
+</div>

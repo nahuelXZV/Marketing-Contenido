@@ -23,9 +23,7 @@ class EditCampaign extends Component
         'campaignArray.fecha_final' => 'required|date',
         'campaignArray.estado' => 'required',
         'campaignArray.invervalo' => 'nullable|numeric',
-        'campaignArray.audiencia' => 'required',
         'campaignArray.presupuesto' => 'required|numeric',
-        'campaignArray.objetivo' => 'required',
     ];
 
     public $message = [
@@ -34,9 +32,7 @@ class EditCampaign extends Component
         'campaignArray.fecha_inicio.required' => 'El campo fecha de inicio es requerido',
         'campaignArray.fecha_final.required' => 'El campo fecha final es requerido',
         'campaignArray.estado.required' => 'El campo estado es requerido',
-        'campaignArray.audiencia.required' => 'El campo audiencia es requerido',
         'campaignArray.presupuesto.required' => 'El campo presupuesto es requerido',
-        'campaignArray.objetivo.required' => 'El campo objetivo es requerido',
         'campaignArray.fecha_inicio.date' => 'El campo fecha de inicio debe ser una fecha',
         'campaignArray.fecha_final.date' => 'El campo fecha final debe ser una fecha',
         'campaignArray.invervalo.numeric' => 'El campo intervalo debe ser un número',

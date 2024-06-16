@@ -49,21 +49,7 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <div class="col-span-3 sm:col-span-1">
-                        <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Audiencia
-                        </label>
-                        <select id="rol" wire:model="campaignArray.audiencia"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected value="">Seleccione un tipo de audiencia</option>
-                            @foreach ($audiences as $audience)
-                                <option value="{{ $audience }}">{{ $audience }}</option>
-                            @endforeach
-                        </select>
-                        @error('campaignArray.audiencia')
-                            <x-shared.validate-error :message="$message" />
-                        @enderror
-                    </div>
+
 
                     <div class="col-span-3 sm:col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Intervalos de
@@ -92,6 +78,7 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
+                    <x-shared.space />
 
                     <div class="col-span-3 sm:col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de inicio
@@ -113,19 +100,6 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <x-shared.space />
-
-                    <div class="col-span-3 sm:col-span-2">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivos
-                        </label>
-                        <input type="text" wire:model="campaignArray.objetivo"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Objetivo" required>
-                        @error('campaignArray.objetivo')
-                            <x-shared.validate-error :message="$message" />
-                        @enderror
-                    </div>
-                    <x-shared.space />
                     <div class="sm:col-span-3">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Descripcion

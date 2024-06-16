@@ -35,7 +35,7 @@
                             <th scope="col" class="px-4 py-3">Codigo</th>
                             <th scope="col" class="px-4 py-3">Tematica</th>
                             <th scope="col" class="px-4 py-3">Fechas</th>
-                            <th scope="col" class="px-4 py-3">Objetivo</th>
+                            <th scope="col" class="px-4 py-3">Presupuesto</th>
                             <th scope="col" class="px-4 py-3">Estado</th>
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
@@ -57,7 +57,7 @@
                                     {{ \Carbon\Carbon::parse($campaign->fecha_inicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::parse($campaign->fecha_final)->format('d/m/Y') }}
                                 </td>
                                 <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ strlen($campaign->objetivo) > 40 ? substr($campaign->objetivo, 0, 40) . '...' : $campaign->objetivo }}
+                                    {{ $campaign->presupuesto }} Bs.
                                 </td>
                                 <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     @if ($campaign->estado == 'Activo')

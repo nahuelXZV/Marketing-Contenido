@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Livewire\Campaign\Campaign;
+namespace App\Livewire\Campaign\Campaign\Components;
 
 use App\Services\Campaign\CampaignService;
 use App\Services\Campaign\PublicationConfigurationService;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowCampaign extends Component
+class ConfigurationMeta extends Component
 {
     use WithPagination;
-    public $breadcrumbs = [];
-    public $search = '';
-
-    public $campaign;
+    private $publicationService;
     public $publicationConfiguration;
+    public $campaign;
+    public $search = '';
 
     public function mount($campaign)
     {
@@ -22,14 +21,10 @@ class ShowCampaign extends Component
         $publicationConfigurationService = new PublicationConfigurationService();
         $this->campaign = $campaignService->getOne($campaign);
         $this->publicationConfiguration = $publicationConfigurationService->getOneByCampaign($campaign);
-        $this->breadcrumbs = [
-            ['title' => "Campañas", "url" => "campaign.list"],
-            ['title' => 'Ver', "url" => "campaign.show", "id" => $this->campaign->id]
-        ];
     }
 
     public function render()
     {
-        return view('livewire.campaign.campaign.show-campaign');
+        return view('livewire.campaign.campaign.components.configuration-meta');
     }
 }

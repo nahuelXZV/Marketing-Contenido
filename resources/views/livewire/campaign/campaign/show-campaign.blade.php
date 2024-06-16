@@ -14,6 +14,9 @@
                 <div class="flex items-center space-x-3">
                     <x-shared.button-header title="Volver" route="campaign.list" />
                     <x-shared.button-header title="Editar" route="campaign.edit" :params="[$campaign->id]" />
+                    @if ($campaign->estado == 'Aceptado' && $publicationConfiguration == null)
+                        <livewire:campaign.campaign.components.create-campaign-meta :campaign="$campaign->id" />
+                    @endif
                 </div>
             </div>
         </div>
@@ -22,17 +25,24 @@
             <section>
                 <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 sm:mb-5">
                     <x-shared.input-readonly title="Tematica" :value="$campaign->tematica" col='2' />
-                    <x-shared.input-readonly title="Audiencia" :value="$campaign->audiencia" col='1' />
+                    <x-shared.input-readonly title="Presupuesto" :value="$campaign->presupuesto" col='1' />
 
                     <x-shared.input-readonly title="Fecha Inicio" :value="$campaign->fecha_inicio" />
                     <x-shared.input-readonly title="Fecha Final" :value="$campaign->fecha_final" />
                     @if ($campaign->intervalo)
                         <x-shared.input-readonly title="Intervalo" :value="$campaign->invervalo" col='1' />
                     @endif
-                    <x-shared.input-readonly title="Presupuesto" :value="$campaign->presupuesto" col='1' />
-                    <x-shared.input-readonly title="Objetivo" :value="$campaign->objetivo" col='2' />
 
                     <x-shared.text-area-readonly title="Descripcion" :value="$campaign->descripcion" col='3' />
+                    @if ($publicationConfiguration)
+                        <p class="text-md text-black dark:text-white font-semibold">Configuracion de la Publicación</p>
+                        <x-shared.input-readonly title="Nombre de la campaña" :value="$publicationConfiguration->nombre" col='3' />
+                        <x-shared.input-readonly title="Identificador de publicacion" :value="$publicationConfiguration->identificador"
+                            col='1' />
+                        <x-shared.input-readonly title="Objetivo" :value="$publicationConfiguration->objetivo" col='1' />
+                        <x-shared.input-readonly title="Estado" :value="$publicationConfiguration->estado" col='1' />
+                    @endif
+
                 </div>
 
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -59,17 +69,9 @@
                         <li class="me-2" role="presentation">
                             <button
                                 class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="report-styled-tab" data-tabs-target="#styled-report" type="button" role="tab"
-                                aria-controls="report" aria-selected="false">
-                                Reportes
-                            </button>
-                        </li>
-                        <li class="me-2" role="presentation">
-                            <button
-                                class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                                 id="settings-styled-tab" data-tabs-target="#styled-settings" type="button"
                                 role="tab" aria-controls="settings" aria-selected="false">
-                                Publicaciones
+                                Anuncios/Publicaciones
                             </button>
                         </li>
                     </ul>
@@ -81,10 +83,6 @@
                     </div>
                     <div class="hidden p-2 rounded-lg dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
                         aria-labelledby="dashboard-tab">
-                        <livewire:campaign.campaign.components.statistics :campaign="$campaign->id" />
-                    </div>
-                    <div class="hidden p-2 rounded-lg dark:bg-gray-800" id="styled-report" role="tabpanel"
-                        aria-labelledby="report-tab">
                         <livewire:campaign.campaign.components.statistics :campaign="$campaign->id" />
                     </div>
                     <div class="hidden p-2 rounded-lg  dark:bg-gray-800" id="styled-settings" role="tabpanel"
