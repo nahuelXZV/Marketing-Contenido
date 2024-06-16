@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('fecha_final');
             $table->string('estado')->default('Borrador');
             $table->integer('invervalo')->nullable();
-            $table->string('audiencia');
             $table->decimal('presupuesto')->nullable();
-            $table->string('objetivo')->nullable();
 
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade');

@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('publication_configurations', function (Blueprint $table) {
             $table->id();
-            $table->string('url_imagen');
-            $table->string('path');
-            $table->boolean('selected')->default(false);
-
-            $table->unsignedBigInteger('publication_id');
-            $table->foreign('publication_id')->references('id')->on('publications')->onDelete('cascade');
+            $table->string('identificador');
+            $table->string('nombre');
+            $table->string('objetivo');
+            $table->string('estado');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('publication_configurations');
     }
 };
