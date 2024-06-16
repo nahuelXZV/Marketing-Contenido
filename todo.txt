@@ -1,0 +1,59 @@
+Grafica 1 - IMPRESIONES
+CONSULTA
+curl -G \
+-d "level=ad" \
+-d "fields=impressions,ad_id" \
+-d "access_token=ACCESS_TOKEN" \
+"https://graph.facebook.com/v20.0/CAMPAIGN_ID/insights"
+
+
+Respuesta
+{
+  "data": [
+    {
+      "impressions": "9708",
+      "ad_id": "6142546123068",
+      "date_start": "2009-03-28",
+      "date_stop": "2016-04-01"
+    },
+    {
+      "impressions": "18841",
+      "ad_id": "6142546117828",
+      "date_start": "2009-03-28",
+      "date_stop": "2016-04-01"
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "before": "MAZDZD",
+      "after": "MQZDZD"
+    }
+  }
+}
+
+Grafica 2 - Clicks por ad
+curl -G \
+-d "fields=id,name,insights{unique_clicks,cpm,total_actions}" \
+-d "level=ad" \
+-d 'filtering=[{"field":"ad.adlabels","operator":"ANY", "value":["Label Name"]}]'  \
+-d 'time_range={"since":"2015-03-01","until":"2015-03-31"}' \
+-d "access_token=ACCESS_TOKEN" \
+"https://graph.facebook.com/v20.0/AD_OBJECT_ID/insights"
+
+{
+  "data": [
+    {
+      "unique_clicks": 74,
+      "cpm": 0.81081081081081,
+      "total_actions": 49,
+      "date_start": "2015-03-01",
+      "date_stop": "2015-03-31",
+    },
+  ],
+  "paging": {
+    "cursors": {
+      "before": "MA==",
+      "after": "MA==",
+    }
+  }
+}

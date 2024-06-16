@@ -26,5 +26,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'company', 'description' => 'Gestionar empresa', 'type' => 'Administrativo'])->syncRoles($admin);
         Permission::create(['name' => 'customer', 'description' => 'Gestionar clientes', 'type' => 'Administrativo'])->syncRoles($admin);
         Permission::create(['name' => 'contract', 'description' => 'Gestionar contratos', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'campaign', 'description' => 'Gestionar campañas', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'publication', 'description' => 'Gestionar publicaciones', 'type' => 'Administrativo'])->syncRoles($admin);
+        Permission::create(['name' => 'meta', 'description' => 'Gestionar publicaciones en meta', 'type' => 'Administrativo'])->syncRoles($admin);
     }
 }

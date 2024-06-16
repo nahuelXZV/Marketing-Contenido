@@ -8,7 +8,7 @@
         <table class="w-full text-sm text-left">
             <thead class="text-md text-white uppercase bg-fondo dark:bg-gray-700 dark:text-gray-300">
                 <tr>
-                    <th scope="col" class="px-4 py-3">Codigo</th>
+                    {{-- <th scope="col" class="px-4 py-3">Codigo</th> --}}
                     <th scope="col" class="px-4 py-3">Titulo</th>
                     <th scope="col" class="px-4 py-3">Contenido</th>
                     <th scope="col" class="px-4 py-3">Fechas</th>
@@ -22,10 +22,6 @@
                 @foreach ($publications as $publication)
                     <tr
                         class="border-b dark:border-gray-700 @if ($loop->even) bg-gray-100 dark:bg-gray-800 @endif">
-                        <th scope="row"
-                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $publication->codigo }}
-                        </th>
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $publication->titulo }}</td>
                         <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">

@@ -19,6 +19,14 @@ class AdSetsService
         return AdSets::where('publication_id', $publicationId)->first();
     }
 
+    static public function getAllByCampaign($campaignId)
+    {
+        return AdSets::join('publications', 'ad_sets.publication_id', '=', 'publications.id')
+            ->where('publications.campaign_id', $campaignId)
+            ->select('ad_sets.*')
+            ->get();
+    }
+
     static public function create($adSetArray, $resource, $publicationId)
     {
         try {
@@ -58,6 +66,15 @@ class AdSetsService
             ]);
             $publication->link_redirect = $adSetArray['link_redirect'];
             $publication->identicador_creativo = $creativeId;
+            $publication->save();
+
+            // create ad
+            $adId = $metaService->createAd([
+                "name" => $publication->titulo,
+                "creative_id" => $creativeId,
+                "adset_id" => $adSetId,
+            ]);
+            $publication->identificador_anuncio = $adId;
             $publication->save();
 
             return true;

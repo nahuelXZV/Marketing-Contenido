@@ -27,6 +27,11 @@ class ShowPublication extends Component
         ];
     }
 
+    public function chageStatus()
+    {
+        // TODO
+    }
+
     public function render()
     {
         return view('livewire.campaign.publication.show-publication');

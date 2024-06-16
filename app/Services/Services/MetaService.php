@@ -169,6 +169,28 @@ class MetaService
         }
     }
 
+    public function createAd($adConfiguration)
+    {
+        try {
+            $response = $this->client->post('ads', [
+                'headers' => $this->headers,
+                'json' => [
+                    'name' => $adConfiguration["name"],
+                    'creative' => [
+                        'creative_id' => $adConfiguration["creative_id"],
+                    ],
+                    'adset_id' => $adConfiguration["adset_id"],
+                    'status' => 'PAUSED',
+                ],
+            ]);
+            $response = json_decode($response->getBody(), true);
+            return $response['id'];
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return false;
+        }
+    }
+
 
     public function preview($creativeId, $format)
     {
@@ -176,12 +198,128 @@ class MetaService
             $headers = [
                 'Authorization' => 'Bearer ' . $this->token,
             ];
+            // dd($creativeId, $headers);
             $API = "https://graph.facebook.com/v20.0/" . $creativeId . "/previews?ad_format=" . $format;
             $response = $this->client->get($API, [
                 'headers' => $headers,
             ]);
             $response = json_decode($response->getBody(), true);
             return $response['data'][0]['body'];
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return false;
+        }
+    }
+
+
+    // insights
+    public function getInsights($adSetId)
+    {
+        try {
+            $headers = ['Authorization' => 'Bearer ' . $this->token];
+            $API = "https://graph.facebook.com/v20.0/" . $adSetId . "/insights";
+            $response = $this->client->get($API, ['headers' => $headers]);
+            $response = json_decode($response->getBody(), true);
+            return $response['data'][0];
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return false;
+        }
+    }
+
+    /*  RESPONSE
+    {
+        "data": [
+            {
+            "impressions": "9708",
+            "ad_id": "6142546123068",
+            "date_start": "2009-03-28",
+            "date_stop": "2016-04-01"
+            },
+            {
+            "impressions": "18841",
+            "ad_id": "6142546117828",
+            "date_start": "2009-03-28",
+            "date_stop": "2016-04-01"
+            }
+        ],
+        "paging": {
+            "cursors": {
+            "before": "MAZDZD",
+            "after": "MQZDZD"
+            }
+        }
+    } */
+    public function getInsightsByCampaign($campaignId)
+    {
+        try {
+            $headers = ['Authorization' => 'Bearer ' . $this->token];
+            $API = "https://graph.facebook.com/v20.0/" . $campaignId . "/insights?fields=impressions,adset_id,ad_name,date_start,date_stop,campaign_name,clicks,ad_id";
+            $response = $this->client->get($API, ['headers' => $headers]);
+            $response = json_decode($response->getBody(), true);
+            if (count($response['data']) > 0) {
+                $responseData = $response['data'][0];
+                return $responseData;
+            }
+            return $this->generateDataExample($campaignId);
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return false;
+        }
+    }
+
+
+    private function generateDataExample($campaignId)
+    {
+        try {
+            $response = [
+                [
+                    'impressions' => '19708',
+                    'clicks' => '324',
+                    'adset_id' => '6142546123068',
+                    'ad_name' => 'Anuncio 1',
+                    'ad_id' => '6142546123068',
+                    'date_start' => '2009-03-28',
+                    'date_stop' => '2016-04-01'
+                ],
+                [
+                    'impressions' => '48841',
+                    'clicks' => '250',
+                    'adset_id' => '6142546117828',
+                    'ad_name' => 'Anuncio 2',
+                    'ad_id' => '6142546117828',
+                    'date_start' => '2009-03-29',
+                    'date_stop' => '2016-04-01'
+                ],
+                [
+                    'impressions' => '45151',
+                    'clicks' => '180',
+                    'adset_id' => '6142546117828',
+                    'ad_name' => 'Anuncio 3',
+                    'ad_id' => '6142546117828',
+                    'date_start' => '2009-03-30',
+                    'date_stop' => '2016-04-01'
+                ],
+                [
+                    'impressions' => '52521',
+                    'clicks' => '360',
+                    'adset_id' => '6142546117828',
+                    'ad_name' => 'Anuncio 4',
+                    'ad_id' => '6142546117828',
+                    'date_start' => '2009-04-01',
+                    'date_stop' => '2016-04-01'
+                ],
+                [
+                    'impressions' => '41415',
+                    'clicks' => '220',
+                    'adset_id' => '6142546117828',
+                    'ad_name' => 'Anuncio 5',
+                    'ad_id' => '6142546117828',
+                    'date_start' => '2009-04-02',
+                    'date_stop' => '2016-04-01'
+                ],
+            ];
+            return $response;
         } catch (\Throwable $th) {
             dd($th->getMessage());
             return false;
