@@ -15,6 +15,20 @@ class GenerateImageModal extends Component
     public $styles = [];
     public $options = [];
 
+    public $validate = [
+        'options.style' => 'required',
+        'options.prompt' => 'required',
+        'options.width' => 'required',
+        'options.height' => 'required',
+    ];
+
+    public $message = [
+        'options.style.required' => 'El estilo es requerido',
+        'options.prompt.required' => 'La descripción es requerida',
+        'options.width.required' => 'El ancho es requerido',
+        'options.height.required' => 'El alto es requerido',
+    ];
+
     public function mount($publication)
     {
         $publicationService = new PublicationService();
@@ -30,6 +44,7 @@ class GenerateImageModal extends Component
 
     public function generateImage()
     {
+        $this->validate($this->validate, $this->message);
         $openIAService = new OpenIAService();
 
         $stylesArray = StylesDream::getStylesArray();
