@@ -52,16 +52,13 @@
     @livewireScripts
     <script>
         const html = document.querySelector('html');
-        html.classList.add('light');
-        // const theme = localStorage.getItem('dark');
-        // if (theme === 'true') {
-        // html.classList.add('dark');
-        // document.getElementById('logo').src = "{{ asset('imgs/logo-black.png') }}";
-        // } else {
-        // html.classList.remove('dark');
-        // html.classList.add('light');
-        // document.getElementById('logo').src = "{{ asset('imgs/logo.jpg') }}";
-        // }
+        const theme = localStorage.getItem('dark');
+        if (theme === 'true') {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+            html.classList.add('light');
+        }
     </script>
 </body>
 
