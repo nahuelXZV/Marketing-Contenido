@@ -28,8 +28,8 @@
 
         <div class="max-w px-4 py-4 mx-auto">
             <section class="grid grid-cols-3">
-                <div class="w-auto bg-white px-10">
-                    <h2 class="text-lg font-bold text-start mb-3">
+                <div class="w-auto bg-white px-10 dark:bg-gray-800">
+                    <h2 class="text-lg font-bold text-start mb-3 dark:text-white">
                         Imagen seleccionada
                     </h2>
                     @if ($resourceSelected)
