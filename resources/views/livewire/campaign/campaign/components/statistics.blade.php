@@ -31,7 +31,6 @@
             stroke: {
                 curve: 'smooth'
             },
-
             title: {
                 text: 'Grafica del alcance de la campaña',
                 align: 'left'
@@ -92,12 +91,13 @@
             },
             xaxis: {
                 labels: {
-                    rotate: -45
+                    rotate: -45,
                 },
                 categories: clicks['label'],
                 tickPlacement: 'on'
             },
-            yaxis: {},
+            yaxis: {
+            },
             fill: {
                 type: 'gradient',
                 gradient: {

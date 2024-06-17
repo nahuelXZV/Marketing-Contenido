@@ -2,6 +2,10 @@
 
 namespace App\Services\Services;
 
+use App\Services\Campaign\AdSetsService;
+use App\Services\Campaign\CampaignService;
+use App\Services\Campaign\PublicationConfigurationService;
+use App\Services\Campaign\PublicationService;
 use App\Services\System\CompanyService;
 use Exception;
 use GuzzleHttp\Client;
@@ -250,7 +254,7 @@ class MetaService
             }
         }
     } */
-    public function getInsightsByCampaign($campaignId)
+    public function getInsightsByCampaign($campaignId, $campaingIdDb)
     {
         try {
             $headers = ['Authorization' => 'Bearer ' . $this->token];
@@ -261,7 +265,7 @@ class MetaService
                 $responseData = $response['data'][0];
                 return $responseData;
             }
-            return $this->generateDataExample($campaignId);
+            return $this->generateDataExample($campaingIdDb);
         } catch (\Throwable $th) {
             dd($th->getMessage());
             return false;
@@ -272,53 +276,19 @@ class MetaService
     private function generateDataExample($campaignId)
     {
         try {
-            $response = [
-                [
-                    'impressions' => '19708',
-                    'clicks' => '324',
-                    'adset_id' => '6142546123068',
-                    'ad_name' => 'Anuncio 1',
-                    'ad_id' => '6142546123068',
-                    'date_start' => '2009-03-28',
-                    'date_stop' => '2016-04-01'
-                ],
-                [
-                    'impressions' => '48841',
-                    'clicks' => '250',
-                    'adset_id' => '6142546117828',
-                    'ad_name' => 'Anuncio 2',
-                    'ad_id' => '6142546117828',
-                    'date_start' => '2009-03-29',
-                    'date_stop' => '2016-04-01'
-                ],
-                [
-                    'impressions' => '45151',
-                    'clicks' => '180',
-                    'adset_id' => '6142546117828',
-                    'ad_name' => 'Anuncio 3',
-                    'ad_id' => '6142546117828',
-                    'date_start' => '2009-03-30',
-                    'date_stop' => '2016-04-01'
-                ],
-                [
-                    'impressions' => '52521',
-                    'clicks' => '360',
-                    'adset_id' => '6142546117828',
-                    'ad_name' => 'Anuncio 4',
-                    'ad_id' => '6142546117828',
-                    'date_start' => '2009-04-01',
-                    'date_stop' => '2016-04-01'
-                ],
-                [
-                    'impressions' => '41415',
-                    'clicks' => '220',
-                    'adset_id' => '6142546117828',
-                    'ad_name' => 'Anuncio 5',
-                    'ad_id' => '6142546117828',
-                    'date_start' => '2009-04-02',
-                    'date_stop' => '2016-04-01'
-                ],
-            ];
+            $adSets = AdSetsService::getAllByCampaign($campaignId);
+            $response = [];
+            foreach ($adSets as $key => $adSet) {
+                $response[] = [
+                    'impressions' => rand(10000, 50000),
+                    'clicks' => rand(100, 500),
+                    'adset_id' => $adSet->identificador,
+                    'ad_name' => $adSet->nombre,
+                    'ad_id' => $adSet->id,
+                    'date_start' => $adSet->fecha_inicio,
+                    'date_stop' => $adSet->fecha_final,
+                ];
+            }
             return $response;
         } catch (\Throwable $th) {
             dd($th->getMessage());

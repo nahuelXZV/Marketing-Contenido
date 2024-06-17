@@ -30,7 +30,8 @@ class Statistics extends Component
         $this->publications = $publicationService->getAllByCampaignTimeline($campaign);
         $this->publicationConfiguration = $publicationConfigurationService->getOneByCampaign($campaign);
         $this->adsets = $adsetService->getAllByCampaign($campaign);
-        $this->updateStatistics();
+        if ($this->publicationConfiguration)
+            $this->updateStatistics();
     }
 
     private function processDataImpressions($data, $label, $type)
@@ -40,10 +41,10 @@ class Statistics extends Component
             'data' => []
         ];
         foreach ($data as $key => $item) {
-            if ($label == 'ad_name')
-                array_push($estructure['label'], $item[$label]);
-            else
-                array_push($estructure['label'], $this->formatDate($item[$label]));
+            // if ($label == 'ad_name')
+            // array_push($estructure['label'], $item[$label]);
+            // else
+            array_push($estructure['label'], $this->formatDate($item[$label]));
             array_push($estructure['data'], $item[$type]);
         }
         return $estructure;
@@ -74,9 +75,9 @@ class Statistics extends Component
     public function updateStatistics()
     {
         $metaService = new MetaService();
-        $this->insights = $metaService->getInsightsByCampaign($this->publicationConfiguration->identificador);
+        $this->insights = $metaService->getInsightsByCampaign($this->publicationConfiguration->identificador, $this->campaign->id);
         $this->impressions =  $this->processDataImpressions($this->insights, 'date_start', 'impressions');
-        $this->clicks =  $this->processDataImpressions($this->insights, 'ad_name', 'clicks');
+        $this->clicks =  $this->processDataImpressions($this->insights, 'date_start', 'clicks');
     }
 
     public function render()
