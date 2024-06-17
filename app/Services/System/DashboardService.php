@@ -21,10 +21,8 @@ class DashboardService
     static public function getPublicationsByState()
     {
         try {
-            $statePublications = PublicationStatus::getCampaignStatus();
+            $statePublications = PublicationStatus::getAll();
             $cantPublications = [];
-
-            // Obtener las cantidades de publicaciones por estado
             foreach ($statePublications as $statePublication) {
                 $cantPublications['labels'][] = $statePublication;
                 $cantPublications['counts'][] = Publication::where('estado', $statePublication)->count();

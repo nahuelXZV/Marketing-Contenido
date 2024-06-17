@@ -71,7 +71,21 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <x-shared.space />
+                    <div class="col-span-3 sm:col-span-1">
+                        <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Estado
+                        </label>
+                        <select id="rol" wire:model="publicationArray.estado"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option selected value="">Seleccione un estado</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status }}">{{ $status }}</option>
+                            @endforeach
+                        </select>
+                        @error('publicationArray.estado')
+                            <x-shared.validate-error :message="$message" />
+                        @enderror
+                    </div>
 
                     <div class="sm:col-span-3">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

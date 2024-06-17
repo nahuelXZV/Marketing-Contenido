@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Constants\PublicationStatus;
 use App\Models\AdSets;
 use App\Models\PublicationConfiguration;
 use App\Services\Services\MetaService;
@@ -75,6 +76,7 @@ class AdSetsService
                 "adset_id" => $adSetId,
             ]);
             $publication->identificador_anuncio = $adId;
+            $publication->estado = PublicationStatus::ACTIVE;
             $publication->save();
 
             return true;

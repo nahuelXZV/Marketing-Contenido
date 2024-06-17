@@ -6,15 +6,17 @@ class PublicationStatus
 {
     const DRAFT = 'Borrador';
     const PENDING = 'Pendiente';
-    const ACEPPTED = 'Aceptado';
+    const ACCEPTED = 'Aceptado';
+    const ACTIVE = 'Activo';
     const REJECTED = 'Rechazado';
 
-    public static function getCampaignStatus()
+    public static function getAll()
     {
         return [
             self::DRAFT,
             self::PENDING,
-            self::ACEPPTED,
+            self::ACCEPTED,
+            self::ACTIVE,
             self::REJECTED
         ];
     }

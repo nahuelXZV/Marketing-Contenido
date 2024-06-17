@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Campaign\Publication;
 
+use App\Constants\PublicationStatus;
 use App\Services\Campaign\CampaignService;
 use App\Services\Campaign\PublicationService;
 use Livewire\Component;
@@ -11,6 +12,7 @@ class EditPublication extends Component
     public $breadcrumbs;
     public $publication;
     public $campaign;
+    public $statuses;
 
     public $publicationArray;
 
@@ -21,6 +23,7 @@ class EditPublication extends Component
         'publicationArray.fecha_publicacion' => 'required|date',
         'publicationArray.hora_publicacion' => 'required',
         'publicationArray.presupuesto' => 'required|numeric',
+        'publicationArray.estado' => 'required'
     ];
 
     public $message = [
@@ -32,6 +35,7 @@ class EditPublication extends Component
         'publicationArray.presupuesto.required' => 'El campo presupuesto es requerido',
         'publicationArray.fecha_publicacion.date' => 'El campo fecha de publicación debe ser una fecha',
         'publicationArray.presupuesto.numeric' => 'El campo presupuesto debe ser un número',
+        'publicationArray.estado.required' => 'El campo estado es requerido'
     ];
 
     public function mount($publication)
@@ -47,12 +51,14 @@ class EditPublication extends Component
             "hora_publicacion" => $this->publication->hora_publicacion,
             "presupuesto" => $this->publication->presupuesto,
             "campaign_id" => $this->publication->campaign_id,
+            'estado' => $this->publication->status ?? 'Borrador'
         ];
         $this->breadcrumbs = [
             ['title' => "Campañas", "url" => "campaign.list"],
             ['title' =>  $this->campaign->tematica, "url" => "campaign.show", "id" =>  $this->campaign->id],
             ['title' => 'Actualizar', "url" => "publication.edit", "id" => $publication]
         ];
+        $this->statuses = PublicationStatus::getAll();
     }
 
     public function save()
