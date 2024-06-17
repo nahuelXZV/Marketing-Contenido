@@ -29,7 +29,7 @@ class CampaignReport extends Fpdf
         $publicationConfiguration = PublicationConfigurationService::getOneByCampaign($campaign->id);
         $adsets = AdSetsService::getAllByCampaign($campaign->id);
         $company = CompanyService::getOne(1);
-        $insights = $metaService->getInsightsByCampaign($publicationConfiguration->identificador);
+        $insights = $metaService->getInsightsByCampaign($publicationConfiguration->identificador, $campaign->id);
         $dateNow = date('Y-m-d H:i:s');
 
         $this->fpdf->AddPage();
