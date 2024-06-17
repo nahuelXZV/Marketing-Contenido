@@ -35,7 +35,8 @@ class CampaignReport extends Fpdf
         $this->fpdf->AddPage();
         $this->fpdf->SetFont('Arial', 'B', 14);
         // $this->fpdf->Image(public_path() . '/imgs/logo2.jpg', 10, 10, 45, 0, 'JPG');
-        $this->fpdf->Image($company->logo, 10, 0, 40, 0, 'PNG');
+        $extension = pathinfo($company->logo, PATHINFO_EXTENSION);
+        $this->fpdf->Image($company->logo, 10, 10, 40, 0, $extension);
         $this->fpdf->Ln();
         $this->fpdf->Cell(188, 6, $company->nombre, 0, 1, 'C');
         $this->fpdf->SetFont('Arial', 'B', 10);
