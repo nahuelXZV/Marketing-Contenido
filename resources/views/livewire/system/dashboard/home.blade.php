@@ -102,7 +102,63 @@
                     </div>
                 </div>
             </div>
+            {{-- BarChart --}}
+            <div class="px-4">
+                <div class="mx-auto py-4">
+                    <div class="shadow p-6 rounded-lg bg-gray-100">
+                        <div class="md:flex md:justify-between md:items-center">
+                            <div>
+                                <h2 class="text-xl text-gray-800 font-bold leading-tight">Contratos</h2>
+                                <p class="mb-2 text-gray-600 text-sm">Estados de los contratos</p>
+                            </div>
 
+                            <!-- Legends -->
+                            <div class="mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-gray-800 mr-2 rounded-full"></div>
+                                    <div class="text-sm text-gray-700">Cantidad</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="my-8 relative"
+                            style="background: repeating-linear-gradient(to bottom, #eee, #eee 1px, #fff 1px, #fff 10%) ">
+                            <!-- Bar Chart -->
+                            <div class="flex -mx-2 items-end">
+                                @foreach ($contracts['counts'] as $data)
+                                    <div class="px-2 w-1/4">
+                                        <div style="height: {{ $data * 10 }}px"
+                                            class="transition ease-in duration-200 bg-gray-800 hover:bg-gray-600 relative">
+                                            <div
+                                                class="text-center absolute top-0 left-0 right-0 -mt-6 text-gray-800 text-sm">
+                                                {{ $data }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Labels -->
+                            <div class="border-t border-gray-400 mx-auto"
+                                style="height: 1px; width: {{ 100 - (1 / count($contracts['labels'])) * 100 + 3 }}%">
+                            </div>
+                            <div class="flex -mx-2 items-end">
+                                @foreach ($contracts['labels'] as $label)
+                                    <div class="px-2 w-1/4">
+                                        <div class="bg-gray-600 relative">
+                                            <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto"
+                                                style="width: 1px"></div>
+                                            <div
+                                                class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm">
+                                                {{ $label }}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {{-- BarChart --}}
             <div class="px-4">
                 <div class="mx-auto py-4">
@@ -202,63 +258,7 @@
                 </div>
             </div>
 
-            {{-- BarChart --}}
-            <div class="px-4">
-                <div class="mx-auto py-4">
-                    <div class="shadow p-6 rounded-lg bg-gray-100">
-                        <div class="md:flex md:justify-between md:items-center">
-                            <div>
-                                <h2 class="text-xl text-gray-800 font-bold leading-tight">Contratos</h2>
-                                <p class="mb-2 text-gray-600 text-sm">Estados de los contratos</p>
-                            </div>
 
-                            <!-- Legends -->
-                            <div class="mb-4">
-                                <div class="flex items-center">
-                                    <div class="w-2 h-2 bg-gray-800 mr-2 rounded-full"></div>
-                                    <div class="text-sm text-gray-700">Cantidad</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="my-8 relative"
-                            style="background: repeating-linear-gradient(to bottom, #eee, #eee 1px, #fff 1px, #fff 10%) ">
-                            <!-- Bar Chart -->
-                            <div class="flex -mx-2 items-end">
-                                @foreach ($contracts['counts'] as $data)
-                                    <div class="px-2 w-1/4">
-                                        <div style="height: {{ $data * 10 }}px"
-                                            class="transition ease-in duration-200 bg-gray-800 hover:bg-gray-600 relative">
-                                            <div
-                                                class="text-center absolute top-0 left-0 right-0 -mt-6 text-gray-800 text-sm">
-                                                {{ $data }}</div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <!-- Labels -->
-                            <div class="border-t border-gray-400 mx-auto"
-                                style="height: 1px; width: {{ 100 - (1 / count($contracts['labels'])) * 100 + 3 }}%">
-                            </div>
-                            <div class="flex -mx-2 items-end">
-                                @foreach ($contracts['labels'] as $label)
-                                    <div class="px-2 w-1/4">
-                                        <div class="bg-gray-600 relative">
-                                            <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto"
-                                                style="width: 1px"></div>
-                                            <div
-                                                class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm">
-                                                {{ $label }}</div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
         </div>

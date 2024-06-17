@@ -2,9 +2,6 @@
 
 namespace App\Livewire\System\Dashboard;
 
-use App\Constants\CampaignStatus;
-use App\Constants\PublicationStatus;
-use App\Models\Publication;
 use App\Services\System\DashboardService;
 use Livewire\Component;
 
