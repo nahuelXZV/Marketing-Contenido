@@ -17,6 +17,10 @@
                     @if ($campaign->estado == 'Aceptado' && $publicationConfiguration == null)
                         <livewire:campaign.campaign.components.create-campaign-meta :campaign="$campaign->id" />
                     @endif
+                    @if ($publicationConfiguration)
+                        <x-shared.button-message icon="pdf" type="a" route="campaign.pdf" :params="$campaign->id"
+                            text="PDF" color="fondo" target="true" />
+                    @endif
                 </div>
             </div>
         </div>

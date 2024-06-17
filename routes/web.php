@@ -24,6 +24,7 @@ use App\Livewire\System\Role\ListRole;
 use App\Livewire\System\User\CreateUser;
 use App\Livewire\System\User\EditUser;
 use App\Livewire\System\User\ListUser;
+use App\Report\CampaignReport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -89,6 +90,10 @@ Route::middleware([
         Route::get('/new', CreateCampaign::class)->name('campaign.new');
         Route::get('/edit/{campaign}', EditCampaign::class)->name('campaign.edit');
         Route::get('/show/{campaign}', ShowCampaign::class)->name('campaign.show');
+        Route::get('/pdf/{campaign}', function ($campaign) {
+            $pdf = new CampaignReport();
+            return $pdf->generate($campaign);
+        })->name('campaign.pdf');
     });
 
     // publication routes
