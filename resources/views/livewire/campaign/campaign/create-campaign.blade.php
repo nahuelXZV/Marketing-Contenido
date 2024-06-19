@@ -83,10 +83,7 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <x-shared.space />
 
-
-                    <x-shared.space />
                     <div class="sm:col-span-3">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Descripcion

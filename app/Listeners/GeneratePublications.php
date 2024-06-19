@@ -27,7 +27,7 @@ class GeneratePublications
         $this->openIAService = new OpenIAService();
         try {
             $numberOfPublications = $this->getNumberOfPublications($campaign);
-            $message = "Generame " . $numberOfPublications . " publicaciones para la campaña publicitaria con tematica de " . $campaign->tematica . ", con el objetivo de " . $campaign->objetivo . " y relacionado con " . $campaign->descripcion . ", dirigido a " . $campaign->audiencia . ".";
+            $message = "Generame " . $numberOfPublications . " publicaciones para la campaña publicitaria con tematica de " . $campaign->tematica . ", y relacionado con " . $campaign->descripcion . ", dirigido a " . $campaign->audiencia . ".";
             $publications =  $this->openIAService->sendMenssage($message);
             $key = 0;
             foreach ($publications as $publication) {

@@ -35,6 +35,7 @@ class Resources extends Component
             }
             $r->save();
         }
+        return redirect()->route('publication.show', $this->publication->id);
     }
 
     public function render()

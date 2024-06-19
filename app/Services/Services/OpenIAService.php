@@ -26,7 +26,8 @@ class OpenIAService
                 'Content-Type' => 'application/json',
             ],
             'json' => [
-                'model' => 'gpt-3.5-turbo', // El modelo que desees usar
+                // 'model' => 'gpt-3.5-turbo', // El modelo que desees usar gpt-4o
+                'model' => 'gpt-4o', // El modelo que desees usar
                 // 'response_format' => ["type" => "json_object"],
                 'messages' => [
                     [
