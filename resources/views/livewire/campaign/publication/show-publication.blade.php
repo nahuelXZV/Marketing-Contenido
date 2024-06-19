@@ -14,9 +14,6 @@
                     <x-shared.button-header title="Editar" route="publication.edit" :params="[$publication->id]" />
                     <livewire:campaign.publication.components.generate-image-modal :publication="$publication->id"
                         :key="$publication->id" />
-                    @if ($publication->identificador_anuncio)
-                        <x-shared.button-header title="Publicar Anuncio" clickAction="changeStatus" type='button' />
-                    @endif
                 </div>
             </div>
         </div>
