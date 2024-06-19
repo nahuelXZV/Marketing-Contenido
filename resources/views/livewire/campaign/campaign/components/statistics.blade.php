@@ -6,13 +6,23 @@
     </div>
 
     <div class="w-full grid grid-cols-2 gap-4 justify-center items-center">
-        <div id="impressions" class="w-full h-auto"> </div>
-        <div id="clicks" class="w-full h-auto"> </div>
+        @if ($impressions != null)
+            <div id="impressions" class="w-full h-auto"> </div>
+        @endif
+        @if ($clicks != null)
+            <div id="clicks" class="w-full h-auto"> </div>
+        @endif
     </div>
+    @if ($impressions == null && $clicks == null)
+        <div class="w-full h-full flex justify-center items-center">
+            <p class="text-gray-500 dark:text-gray-400">
+                Necesitas guardar la Configuracion Meta para poder usar esta funcionalidad
+            </p>
+        </div>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         var impressions = @json($impressions);
-        console.log(impressions);
         var options = {
             series: [{
                 name: "Alcance de la campaña",
@@ -54,7 +64,6 @@
     </script>
     <script>
         var clicks = @json($clicks);
-        console.log(clicks['labels']);
         var options = {
             title: {
                 text: 'Grafica de cantidad de clicks',
@@ -96,8 +105,7 @@
                 categories: clicks['label'],
                 tickPlacement: 'on'
             },
-            yaxis: {
-            },
+            yaxis: {},
             fill: {
                 type: 'gradient',
                 gradient: {
