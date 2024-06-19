@@ -45,8 +45,8 @@
     aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 scroll-nice">
         <ul class="pt-2 mt-2 space-y-2 font-medium ">
-            <a href="{{ route('dashboard') }}" class="flex items-center ps-2.5 mb-5">
-                <img src="{{ asset('imgs/logo.png') }}" style="width:200px" style="margin-left:20px"
+            <a href="{{ route('dashboard') }}" class="flex items-center justify-center ps-2.5 mb-5">
+                <img src="{{ asset('imgs/logo.jpg') }}" style="width:100px" style="margin-left:20px"
                     alt="Escuela ingenieria" id="logo">
             </a>
         </ul>
