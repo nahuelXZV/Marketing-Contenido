@@ -51,7 +51,7 @@ class EditPublication extends Component
             "hora_publicacion" => $this->publication->hora_publicacion,
             "presupuesto" => $this->publication->presupuesto,
             "campaign_id" => $this->publication->campaign_id,
-            'estado' => $this->publication->status ?? 'Borrador'
+            'estado' => $this->publication->estado ?? 'Borrador'
         ];
         $this->breadcrumbs = [
             ['title' => "Campañas", "url" => "campaign.list"],
