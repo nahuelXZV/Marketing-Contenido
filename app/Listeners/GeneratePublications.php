@@ -14,7 +14,6 @@ class GeneratePublications
 
     public function __construct()
     {
-        //
     }
 
     public function handle(CampaignCreated $event): void
@@ -30,13 +29,20 @@ class GeneratePublications
             $message = "Generame " . $numberOfPublications . " publicaciones para la campaña publicitaria con tematica de " . $campaign->tematica . ", y relacionado con " . $campaign->descripcion . ", dirigido a " . $campaign->audiencia . ".";
             $publications =  $this->openIAService->sendMenssage($message);
             $key = 0;
+            if (!is_array($publications)) {
+                throw new \Exception("Error al generar las publicaciones");
+            }
+            if (count($publications) === 0) {
+                throw new \Exception("Error al generar las publicaciones");
+            }
             foreach ($publications as $publication) {
                 $this->savePublication($publication, $campaign, $key);
                 $key += $this->getInterval($campaign);
             };
             return true;
         } catch (\Exception $e) {
-            $this->generatePublications($campaign);
+            $campaign->delete();
+            throw new \Exception("Error al generar las publicaciones");
         }
     }
 
@@ -51,7 +57,10 @@ class GeneratePublications
             'fecha_publicacion' => $this->getDatePublication($campaign,  $key),
             'hora_publicacion' => $this->getTimePublication($campaign, 0),
         ];
-        PublicationService::create($dataPublication);
+        $publication = PublicationService::create($dataPublication);
+        if (!$publication) {
+            throw new \Exception("Error al generar las publicaciones");
+        }
     }
 
     public function getNumberOfPublications($campaign)

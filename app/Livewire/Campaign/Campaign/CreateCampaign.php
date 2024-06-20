@@ -10,9 +10,13 @@ use Livewire\Component;
 class CreateCampaign extends Component
 {
     public $breadcrumbs = [['title' => "Campañas", "url" => "campaign.list"], ['title' => "Crear", "url" => "campaign.create"]];
+    protected $listeners = ['cleanerNotificacion'];
 
     public $campaignArray;
     public $audiences;
+    public $notificacion = false;
+    public $type = '';
+    public $messageError = '';
 
     public $validate = [
         'campaignArray.tematica' => 'required',
@@ -56,8 +60,21 @@ class CreateCampaign extends Component
     public function save()
     {
         $this->validate($this->validate, $this->message);
-        CampaignService::create($this->campaignArray);
-        return redirect()->route('campaign.list');
+        $status = CampaignService::create($this->campaignArray);
+        if ($status) {
+            return redirect()->route('campaign.list');
+        } else {
+            $this->messageError = 'Error al crear la campaña, Intente de nuevo mas tarde. o comuniquese con soporte';
+            $this->type = 'error';
+            $this->notificacion = true;
+        }
+    }
+
+    public function cleanerNotificacion()
+    {
+        $this->notificacion = null;
+        $this->messageError = '';
+        $this->type = '';
     }
 
     public function render()

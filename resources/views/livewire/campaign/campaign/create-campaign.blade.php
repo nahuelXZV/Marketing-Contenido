@@ -99,4 +99,14 @@
             </section>
         </div>
     </x-shared.container>
+    @if ($notificacion)
+        <x-shared.notificacion :message="$messageError" :type="$type" />
+        @script
+            <script>
+                setTimeout(() => {
+                    $wire.dispatch('cleanerNotificacion');
+                }, 3500);
+            </script>
+        @endscript
+    @endif
 </div>

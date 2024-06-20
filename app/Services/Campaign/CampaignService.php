@@ -39,7 +39,7 @@ class CampaignService
             event(new \App\Events\CampaignCreated($campaign));
             return $campaign;
         } catch (\Throwable $th) {
-            dd($th);
+            return false;
         }
     }
 
