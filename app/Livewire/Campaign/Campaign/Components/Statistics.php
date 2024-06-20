@@ -40,10 +40,7 @@ class Statistics extends Component
             'label' => [],
             'data' => []
         ];
-        foreach ($data as $key => $item) {
-            // if ($label == 'ad_name')
-            // array_push($estructure['label'], $item[$label]);
-            // else
+        foreach ($data as  $item) {
             array_push($estructure['label'], $this->formatDate($item[$label]));
             array_push($estructure['data'], $item[$type]);
         }

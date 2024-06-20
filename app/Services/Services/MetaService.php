@@ -262,7 +262,7 @@ class MetaService
             $response = $this->client->get($API, ['headers' => $headers]);
             $response = json_decode($response->getBody(), true);
             if (count($response['data']) > 0) {
-                $responseData = $response['data'][0];
+                $responseData = $response['data'];
                 return $responseData;
             }
             return $this->generateDataExample($campaingIdDb);
