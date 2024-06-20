@@ -7,21 +7,23 @@
                     <h5 class="mr-3 text-lg font-bold dark:text-white uppercase">Configuración de publicación</h5>
                 </div>
                 <div>
-                    <button wire:click="saveAdSet" type="button" wire:loading.remove wire:target="saveAdSet"
-                        class="w-min flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-fondo hover:bg-primary-900 focus:ring-4 focus:ring-fondo dark:bg-fondo dark:hover:bg-primary-900 focus:outline-none dark:focus:ring-primary-800">
-                        Guardar
-                    </button>
-                    <div wire:loading wire:target="saveAdSet" class="flex items-center space-x-2">
-                        <li class="flex items-center">
-                            <div role="status">
-                                <x-icons.loading />
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                            <span class="text-md font-bold text-gray-900 dark:text-white">
-                                Guardando configuracion...
-                            </span>
-                        </li>
-                    </div>
+                    @if (!$publication->identificador_anuncio)
+                        <button wire:click="saveAdSet" type="button" wire:loading.remove wire:target="saveAdSet"
+                            class="w-min flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-fondo hover:bg-primary-900 focus:ring-4 focus:ring-fondo dark:bg-fondo dark:hover:bg-primary-900 focus:outline-none dark:focus:ring-primary-800">
+                            Guardar
+                        </button>
+                        <div wire:loading wire:target="saveAdSet" class="flex items-center space-x-2">
+                            <li class="flex items-center">
+                                <div role="status">
+                                    <x-icons.loading />
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <span class="text-md font-bold text-gray-900 dark:text-white">
+                                    Guardando configuracion...
+                                </span>
+                            </li>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -46,7 +48,7 @@
                         <div class="col-span-3 sm:col-span-2">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Identificador
                             </label>
-                            <input type="text" wire:model="adSetArray.identificador"
+                            <input type="text" value="{{ $adSetArray['identificador'] }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 readonly>
                         </div>
@@ -56,7 +58,7 @@
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Identificador
                                 Anuncio
                             </label>
-                            <input type="text" wire:model="publication.identificador_anuncio"
+                            <input type="text" value="{{ $publication->identificador_anuncio }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 readonly>
                         </div>

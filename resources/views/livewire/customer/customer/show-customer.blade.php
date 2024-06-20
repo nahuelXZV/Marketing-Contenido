@@ -67,11 +67,13 @@
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         @if ($contract->estado_contrato == 'Finalizado')
-                                            <X-shared.badge color="green" message="Finalizado" />
-                                        @elseif ($contract->estado_contrato == 'Cancelado')
-                                            <X-shared.badge color="red" message="Cancelado" />
-                                        @else
-                                            <X-shared.badge color="blue" message="Activo" />
+                                            <x-shared.badge color="green" message="Finalizado" />
+                                        @endif
+                                        @if ($contract->estado_contrato == 'Cancelado')
+                                            <x-shared.badge color="red" message="Cancelado" />
+                                        @endif
+                                        @if ($contract->estado_contrato != 'Finalizado' && $contract->estado_contrato != 'Cancelado')
+                                            <x-shared.badge color="blue" :message="$contract->estado_contrato" />
                                         @endif
                                     </td>
                                     <td
