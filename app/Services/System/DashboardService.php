@@ -7,6 +7,7 @@ use App\Constants\ContractStatus;
 use App\Constants\PublicationStatus;
 use App\Models\Campaign;
 use App\Models\Contract;
+use App\Models\Customer;
 use App\Models\Publication;
 use App\Models\User;
 use Carbon\Carbon;
@@ -78,19 +79,21 @@ class DashboardService
         }
     }
 
-    static public function getStateTypes($stateStudents)
-    {
-        try {
-        } catch (\Throwable $th) {
-            return false;
-        }
-    }
-
     static public function getCantidadUsers()
     {
         try {
             $cantidadUsuarios = User::count();
             return $cantidadUsuarios;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    static public function getCountCustomers()
+    {
+        try {
+            $countCustomers = Customer::count();
+            return $countCustomers;
         } catch (\Throwable $th) {
             return false;
         }

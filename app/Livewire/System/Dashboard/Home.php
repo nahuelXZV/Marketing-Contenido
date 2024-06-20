@@ -8,7 +8,7 @@ use Livewire\Component;
 class Home extends Component
 {
     public $breadcrumbs = [['title' => "Home", "url" => ""]];
-    public $cantUsers;
+    public $countCustomers;
     public $cantCampaigns;
     public $cantPublications;
 
@@ -20,7 +20,7 @@ class Home extends Component
     public function render()
     {
         //cards
-        $this->cantUsers = DashboardService::getCantidadUsers();
+        $this->countCustomers = DashboardService::getCountCustomers();
         $this->cantCampaigns = DashboardService::getCantidadCampaigns();
         $this->cantPublications = DashboardService::getCantidadPublications();
 

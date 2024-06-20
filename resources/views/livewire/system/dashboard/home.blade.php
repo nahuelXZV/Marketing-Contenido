@@ -42,8 +42,8 @@
                     </svg>
                 </div>
                 <div class="text-right">
-                    <p class="text-2xl">{{ $cantUsers }}</p>
-                    <p>Usuarios</p>
+                    <p class="text-2xl">{{ $countCustomers }}</p>
+                    <p>Clientes</p>
                 </div>
             </div>
         </div>
