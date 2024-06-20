@@ -231,38 +231,30 @@ class MetaService
         }
     }
 
-    /*  RESPONSE
-    {
-        "data": [
-            {
-            "impressions": "9708",
-            "ad_id": "6142546123068",
-            "date_start": "2009-03-28",
-            "date_stop": "2016-04-01"
-            },
-            {
-            "impressions": "18841",
-            "ad_id": "6142546117828",
-            "date_start": "2009-03-28",
-            "date_stop": "2016-04-01"
-            }
-        ],
-        "paging": {
-            "cursors": {
-            "before": "MAZDZD",
-            "after": "MQZDZD"
-            }
-        }
-    } */
     public function getInsightsByCampaign($campaignId, $campaingIdDb)
     {
         try {
             $headers = ['Authorization' => 'Bearer ' . $this->token];
-            $API = "https://graph.facebook.com/v20.0/" . $campaignId . "/insights?fields=impressions,adset_id,ad_name,date_start,date_stop,campaign_name,clicks,ad_id";
+            // $API = "https://graph.facebook.com/v20.0/" . $campaignId . "/insights?fields=impressions,adset_id,ad_name,date_start,date_stop,campaign_name,clicks,ad_id";
+            $API = "https://graph.facebook.com/v20.0/act_357983907302107/campaigns?fields=name,status,adsets{name,insights{impressions,clicks},id}";
             $response = $this->client->get($API, ['headers' => $headers]);
             $response = json_decode($response->getBody(), true);
-            if (count($response['data']) > 0) {
-                $responseData = $response['data'];
+            $campaign = $this->getCampaignById($campaignId, $response['data']);
+            if (array_key_exists('adsets', $campaign) > 0) {
+                $insights = $campaign['adsets']['data'];
+                $responseData = [];
+                foreach ($insights as $item) {
+                    if (!array_key_exists('insights', $item)) continue;
+                    $responseData[] = [
+                        'impressions' => $item['insights']['data'][0]['impressions'] ?? 0,
+                        'clicks' => $item['insights']['data'][0]['clicks'] ?? 0,
+                        'adset_id' => $item['id'],
+                        'ad_name' => $item['name'],
+                        'ad_id' => $item['id'],
+                        'date_start' => $item['insights']['data'][0]['date_start'],
+                        'date_stop' => $item['insights']['data'][0]['date_stop'],
+                    ];
+                }
                 return $responseData;
             }
             return $this->generateDataExample($campaingIdDb);
@@ -272,6 +264,14 @@ class MetaService
         }
     }
 
+    public function getCampaignById($campaignId, $response)
+    {
+        foreach ($response as $item) {
+            if ($item['id'] == $campaignId) {
+                return $item;
+            }
+        }
+    }
 
     private function generateDataExample($campaignId)
     {

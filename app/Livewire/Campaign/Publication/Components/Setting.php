@@ -89,7 +89,7 @@ class Setting extends Component
                 'identificador' => '',
                 'name' => $this->publication->titulo,
                 'optimization_goal' => '',
-                'billing_event' => '',
+                'billing_event' => AdSetBillingEventValues::IMPRESSIONS,
                 'bid_amount' => $this->publication->presupuesto,
                 'daily_budget' => '',
                 'targeting' => '{\"geo_locations\": {\"countries\":[\"BO\"]}}',

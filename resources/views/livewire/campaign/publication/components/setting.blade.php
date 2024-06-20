@@ -88,7 +88,7 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <div class="col-span-1">
+                    {{-- <div class="col-span-1">
                         <label for="format" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Evento de facturacion
                         </label>
@@ -102,7 +102,7 @@
                         @error('adSetArray.billing_event')
                             <x-shared.validate-error :message="$message" />
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="col-span-3 sm:col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Monto de oferta
