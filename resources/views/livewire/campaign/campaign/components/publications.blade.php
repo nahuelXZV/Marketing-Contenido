@@ -41,7 +41,7 @@
                             @elseif ($publication->estado == 'Rechazado')
                                 <x-shared.badge color="red" message="Rechazado" />
                             @else
-                                <x-shared.badge color="blue" message="Pendiente" />
+                                <x-shared.badge color="blue" :message="$publication->estado" />
                             @endif
                         </td>
                         <td
