@@ -63,7 +63,7 @@
                                 readonly>
                         </div>
                     @endif
-                    <div class="col-span-3 sm:col-span-2">
+                    <div class="col-span-3 sm:col-span-3">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre
                         </label>
                         <input type="text" wire:model="adSetArray.name"
@@ -73,36 +73,6 @@
                             <x-shared.validate-error :message="$message" />
                         @enderror
                     </div>
-                    <div class=" col-span-1">
-                        <label for="format" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Objetivo de optimizacion
-                        </label>
-                        <select id="format" wire:model="adSetArray.optimization_goal"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="">Selecciona un objetivo</option>
-                            @foreach ($objetives as $objetive)
-                                <option value="{{ $objetive }}">{{ $objetive }}</option>
-                            @endforeach
-                        </select>
-                        @error('adSetArray.optimization_goal')
-                            <x-shared.validate-error :message="$message" />
-                        @enderror
-                    </div>
-                    {{-- <div class="col-span-1">
-                        <label for="format" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Evento de facturacion
-                        </label>
-                        <select id="format" wire:model="adSetArray.billing_event"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="">Selecciona un evento</option>
-                            @foreach ($events as $event)
-                                <option value="{{ $event }}">{{ $event }}</option>
-                            @endforeach
-                        </select>
-                        @error('adSetArray.billing_event')
-                            <x-shared.validate-error :message="$message" />
-                        @enderror
-                    </div> --}}
                     <div class="col-span-3 sm:col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Monto de oferta

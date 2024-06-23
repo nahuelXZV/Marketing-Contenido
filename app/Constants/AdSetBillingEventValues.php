@@ -4,8 +4,6 @@ namespace App\Constants;
 
 class AdSetBillingEventValues
 {
-
-    const APP_INSTALLS = 'APP_INSTALLS';
     const IMPRESSIONS = 'IMPRESSIONS';
     const LINK_CLICKS = 'LINK_CLICKS';
     const LISTING_INTERACTION = 'LISTING_INTERACTION';
@@ -18,7 +16,6 @@ class AdSetBillingEventValues
     public static function getAll()
     {
         return [
-            self::APP_INSTALLS,
             self::IMPRESSIONS,
             self::LINK_CLICKS,
             self::LISTING_INTERACTION,

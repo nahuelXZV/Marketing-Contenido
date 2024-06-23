@@ -88,7 +88,7 @@ class Setting extends Component
             $this->adSetArray = [
                 'identificador' => '',
                 'name' => $this->publication->titulo,
-                'optimization_goal' => '',
+                'optimization_goal' => AdSetOptimizationGoalValues::REACH,
                 'billing_event' => AdSetBillingEventValues::IMPRESSIONS,
                 'bid_amount' => $this->publication->presupuesto,
                 'daily_budget' => '',

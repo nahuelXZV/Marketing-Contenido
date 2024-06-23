@@ -35,7 +35,7 @@ class GenerateImageModal extends Component
         $this->publication = $publicationService->getOne($publication);
         $this->styles = StylesDream::getStyles();
         $this->options = [
-            "style" => 0,
+            "style" => StylesDream::DALL_E,
             "prompt" => $this->publication->descripcion_recurso,
             "width" => "960",
             "height" => "960",
