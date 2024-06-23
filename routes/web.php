@@ -39,6 +39,13 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+Route::get('/policy', function () {
+    return view('policy');
+})->name('policy');
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -46,6 +53,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/', Home::class)->name('dashboard');
     Route::get('/dashboard', Home::class);
+
 
     // user routes
     Route::group(

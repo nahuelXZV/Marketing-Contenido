@@ -17,32 +17,57 @@
 
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                    autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <label for="accept_terms" class="flex items-center">
+                    <x-checkbox id="accept_terms" name="accept_terms" />
+                    <span class="ms-2 text-sm text-gray-600">{{ __('Al iniciar sesión, aceptas los ') }}</span>
+                    <a href="{{ route('terms') }}" class="text-sm underline ml-1"
+                        target="_blank">{{ __(' Terminos y condiciones') }}</a>
                 </label>
             </div>
-
+            <div class="block mt-4">
+                <label for="policy" class="flex items-center">
+                    <x-checkbox id="policy" name="policy" />
+                    <span class="ms-2 text-sm text-gray-600">{{ __('Al iniciar sesión, aceptas los ') }}</span>
+                    <a href="{{ route('policy') }}" class="text-sm underline ml-1"
+                        target="_blank">{{ __(' Politicas de privacidad') }}</a>
+                </label>
+            </div>
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
+                <x-button class="ms-4" id="login_button" disabled>
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
     </x-authentication-card>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const acceptTermsCheckbox = document.getElementById('accept_terms');
+            const policyCheckbox = document.getElementById('policy');
+            const loginButton = document.getElementById('login_button');
+
+            let isAcceptTermsChecked = acceptTermsCheckbox.checked;
+            let isPolicyChecked = policyCheckbox.checked;
+
+            acceptTermsCheckbox.addEventListener('change', function() {
+                isAcceptTermsChecked = this.checked;
+                loginButton.disabled = !(isAcceptTermsChecked && isPolicyChecked);
+            });
+
+            policyCheckbox.addEventListener('change', function() {
+                isPolicyChecked = this.checked;
+                loginButton.disabled = !(isAcceptTermsChecked && isPolicyChecked);
+            });
+        });
+    </script>
 </x-guest-layout>
