@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class DreamIAService
 {
-    protected $client;
-    protected $apiKey;
-    protected $headers;
+    public $client;
+    public $apiKey;
+    public $headers;
 
     public function __construct()
     {
@@ -38,7 +38,7 @@ class DreamIAService
         return $dataResponse;
     }
 
-    private function createTask($options)
+    public function createTask($options)
     {
         $response = $this->client->post('', [
             'headers' => $this->headers,
@@ -49,7 +49,7 @@ class DreamIAService
         return json_decode($response->getBody(), true);
     }
 
-    private function sendPrompt($task, $options)
+    public function sendPrompt($task, $options)
     {
         $response = $this->client->put($task, [
             'headers' => $this->headers,
@@ -60,7 +60,7 @@ class DreamIAService
         return json_decode($response->getBody(), true);
     }
 
-    private function getImage($task)
+    public function getImage($task)
     {
         while (true) {
             $response = $this->client->get($task, [
@@ -78,7 +78,7 @@ class DreamIAService
         }
     }
 
-    private function saveImageS3($url)
+    public function saveImageS3($url)
     {
         $client = new Client();
         $response = $client->get($url);

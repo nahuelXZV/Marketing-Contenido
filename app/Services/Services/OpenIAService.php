@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class OpenIAService
 {
-    protected $client;
-    protected $apiKey;
+    public $client;
+    public $apiKey;
 
     public function __construct()
     {

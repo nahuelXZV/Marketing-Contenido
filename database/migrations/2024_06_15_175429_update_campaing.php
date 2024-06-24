@@ -13,8 +13,8 @@ return new class extends Migration
     {
         // eliminar campos de la tabla campaigns
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->dropColumn('audiencia');
-            $table->dropColumn('objetivo');
+            // $table->dropColumn('audiencia');
+            // $table->dropColumn('objetivo');
         });
     }
 
@@ -24,8 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->string('audiencia')->nullable();
-            $table->string('objetivo')->nullable();
+            // $table->string('audiencia')->nullable();
+            // $table->string('objetivo')->nullable();
         });
     }
 };

@@ -3,19 +3,16 @@
 namespace App\Services\Services;
 
 use App\Services\Campaign\AdSetsService;
-use App\Services\Campaign\CampaignService;
-use App\Services\Campaign\PublicationConfigurationService;
-use App\Services\Campaign\PublicationService;
 use App\Services\System\CompanyService;
 use Exception;
 use GuzzleHttp\Client;
 
 class MetaService
 {
-    protected $client;
-    protected $token;
-    protected $headers;
-    protected $pageId;
+    public $client;
+    public $token;
+    public $headers;
+    public $pageId;
 
     public function __construct()
     {
