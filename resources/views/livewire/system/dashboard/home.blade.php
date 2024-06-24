@@ -238,7 +238,8 @@
                                 label: "cantidad",
                                 data: @json($publications['counts']),
                                 backgroundColor: [
-                                    "rgb(37, 33, 32)",
+                                    "rgb(145, 145, 143)",
+                                    "rgb(45, 35, 53)",
                                     "rgb(101, 88, 86)",
                                     "rgb(152, 136, 132)",
                                     "rgb(197, 181, 178)",
