@@ -239,7 +239,7 @@
                                 data: @json($publications['counts']),
                                 backgroundColor: [
                                     "rgb(145, 145, 143)",
-                                    "rgb(45, 35, 53)",
+                                    "rgb(213, 219, 219)",
                                     "rgb(101, 88, 86)",
                                     "rgb(152, 136, 132)",
                                     "rgb(197, 181, 178)",
