@@ -235,7 +235,7 @@
                         const dataPie = {
                             labels: @json($publications['labels']),
                             datasets: [{
-                                label: "My First Dataset",
+                                label: "cantidad",
                                 data: @json($publications['counts']),
                                 backgroundColor: [
                                     "rgb(37, 33, 32)",
