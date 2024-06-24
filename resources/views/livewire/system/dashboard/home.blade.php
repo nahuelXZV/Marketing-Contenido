@@ -24,7 +24,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
                     </svg>
-
                 </div>
                 <div class="text-right">
                     <p class="text-2xl">{{ $cantPublications }}</p>
@@ -111,7 +110,6 @@
                                 <h2 class="text-xl text-gray-800 font-bold leading-tight">Contratos</h2>
                                 <p class="mb-2 text-gray-600 text-sm">Estados de los contratos</p>
                             </div>
-
                             <!-- Legends -->
                             <div class="mb-4">
                                 <div class="flex items-center">
@@ -120,8 +118,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="my-8 relative"
                             style="background: repeating-linear-gradient(to bottom, #eee, #eee 1px, #fff 1px, #fff 10%) ">
                             <!-- Bar Chart -->
@@ -163,6 +159,7 @@
             <div class="px-4">
                 <div class="mx-auto py-4">
                     <div class="shadow p-6 rounded-lg bg-gray-100">
+
                         <div class="md:flex md:justify-between md:items-center">
                             <div>
                                 <h2 class="text-xl text-gray-800 font-bold leading-tight">Campañas</h2>
@@ -177,7 +174,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="my-8 relative"
                             style="background: repeating-linear-gradient(to bottom, #eee, #eee 1px, #fff 1px, #fff 10%) ">
@@ -199,6 +195,7 @@
                             <div class="border-t border-gray-400 mx-auto"
                                 style="height: 1px; width: {{ 100 - (1 / count($campaigns['labels'])) * 100 + 3 }}%">
                             </div>
+
                             <div class="flex -mx-2 items-end">
                                 @foreach ($campaigns['labels'] as $label)
                                     <div class="px-2 w-1/4">
@@ -219,7 +216,9 @@
 
             {{-- PieChart --}}
             <div class="px-4">
+
                 <div class="mx-auto py-4">
+
                     <div class="shadow p-4 rounded-lg bg-gray-100 overflow-hidden">
                         <div>
                             <h2 class="text-xl text-gray-800 font-bold leading-tight">Publicaciones</h2>
@@ -227,21 +226,21 @@
                         </div>
                         <canvas class="p-1 ml-24 mr-24" id="chartPie"></canvas>
                     </div>
+
                     <!-- Required chart.js -->
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
                     <script>
                         const dataPie = {
                             labels: @json($publications['labels']),
                             datasets: [{
-                                label: "My First Dataset",
+                                label: "cantidad",
                                 data: @json($publications['counts']),
                                 backgroundColor: [
-                                    "rgb(37, 33, 32)",
-                                    "rgb(101, 88, 86)",
-                                    "rgb(152, 136, 132)",
-                                    "rgb(197, 181, 178)",
+                                    "rgb(145, 145, 143)",
+                                    "rgb(213, 219, 219)",
+                                    "rgb(179, 178, 174)",
+                                    "rgb(93, 99, 99)",
+                                    "rgb(41, 55, 55)",
                                 ],
                                 hoverOffset: 4,
                             }, ],
@@ -257,10 +256,6 @@
                     </script>
                 </div>
             </div>
-
-
-
-
         </div>
     </x-shared.container>
 </div>
